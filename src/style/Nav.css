@@ -1,0 +1,23 @@
+.Nav-bar{
+    display: flex;
+    background-color: grey;
+    color: white;
+    width: 20%;
+    height: 100vh;
+}   
+ul{
+    padding: 1em;
+
+}
+ul li{
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+   
+   
+    
+}
+ul li a{
+     text-decoration: none;
+     color: black;
+}

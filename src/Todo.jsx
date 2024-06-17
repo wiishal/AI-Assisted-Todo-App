@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./Todo.css";
-
+import Nav from "./componant/Nav";
 function Todo() {
   const [tasks, setTask] = useState([
     {
@@ -36,13 +36,14 @@ function Todo() {
 
   return (
     <>
+    <Nav></Nav>
       <div className="input-Div">
         <label className="input-task">
           Task--
           <input type="text" value={newTask} onChange={handleOnchange} />
         </label>
         <label className="input-task">
-          Task--
+          Description--
           <input type="text" value={newDes} onChange={handleOnchange2} />
         </label>
         <button onClick={addTask}>Add</button>
