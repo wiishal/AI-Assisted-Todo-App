@@ -1,6 +1,12 @@
+import { useState } from "react";
 import "../style/Nav.css";
+import Lists from "./Lists";
 
 function Nav() {
+  const [taskcount, SetTaskCount] = useState({
+    today:12,
+    Upcoming:5
+  })
   return (
     <div className="Nav-div">
       <div className="menu">
@@ -16,17 +22,39 @@ function Nav() {
         <span>Tasks</span>
         <ul>
           <li>
-            <a href="/">Today</a>
+            <div className="section-div">
+              <a href="/">Today</a>
+              <p className="count">{taskcount.today}</p>
+            </div>
           </li>
           <li>
-            <a href="/Upcoming">Upcoming</a>
+            <div className="section-div">
+              <a href="/Upcoming">Upcoming</a>
+              <p className="count">{taskcount.Upcoming}</p>
+            </div>
           </li>
           <li>
-            <a href="/Calender">Calender</a>
+            <div className="section-div">
+              <a href="/Calender">Calender</a>
+              <p className="count">0</p>
+            </div>
           </li>
           <li>
             <a href="/StickyWall">Sticky Wall</a>
           </li>
+        </ul>
+      </nav>
+      <nav>
+        <span>Lists</span>
+        <ul>
+          <li>
+            <Lists props="Personal"></Lists>
+          </li>
+          <li>
+            <Lists props="Work"></Lists>
+          </li>
+
+          
         </ul>
       </nav>
     </div>

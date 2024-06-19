@@ -18,6 +18,7 @@ nav{
     font-size: small;
     justify-content: center;
     margin-left:10px ;
+    margin-bottom: 1em;
 
     
 
@@ -62,4 +63,18 @@ ul li a{
     width: 90%;
     height: 25px;
     font-weight: 500 ;
+}
+.section-div{
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+
+
+}
+.count{
+    text-align: center;
+    width: fit-content;
+    height: fit-content;
+    
+    
 }
