@@ -78,3 +78,7 @@ ul li a{
     
     
 }
+.icon-div{
+    display: flex;
+    align-items: center;
+}

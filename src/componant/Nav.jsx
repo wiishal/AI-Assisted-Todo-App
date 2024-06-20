@@ -23,24 +23,37 @@ function Nav() {
         <ul>
           <li>
             <div className="section-div">
-              <a href="/">Today</a>
+              <div className="icon-div">
+                <img src="/assets/checklist.png" alt="" width={20} height={20} />
+                <a href="/">Today</a>
+              </div>
               <p className="count">{taskcount.today}</p>
             </div>
           </li>
           <li>
             <div className="section-div">
-              <a href="/Upcoming">Upcoming</a>
+              <div className="icon-div">
+                <img src="/assets/fast-forward-double-right-arrows-symbol.png" alt="" width={15} height={15} />
+                <a href="/Upcoming">Upcoming</a>
+              </div>
               <p className="count">{taskcount.Upcoming}</p>
             </div>
           </li>
           <li>
             <div className="section-div">
-              <a href="/Calender">Calender</a>
+              <div className="icon-div">
+                <img src="/assets/calendar.png" alt="" width={15} height={15} />
+                <a href="/Calender">Calender</a>
+              </div>
               <p className="count">0</p>
             </div>
           </li>
           <li>
-            <a href="/StickyWall">Sticky Wall</a>
+            <div className="icon-div">
+              <img src="/assets/sticky-note.png" alt="" width={15} height={15} />
+              <a href="/StickyWall">Sticky Wall</a>
+            </div>
+            
           </li>
         </ul>
       </nav>
@@ -53,8 +66,6 @@ function Nav() {
           <li>
             <Lists props="Work"></Lists>
           </li>
-
-          
         </ul>
       </nav>
     </div>
