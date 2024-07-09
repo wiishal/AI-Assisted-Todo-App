@@ -2,11 +2,8 @@ import { useState } from "react";
 import "../style/Nav.css";
 import Lists from "./Lists";
 
-function Nav() {
-  const [taskcount, SetTaskCount] = useState({
-    today:12,
-    Upcoming:5
-  })
+function Nav({props}) {
+ 
   return (
     <div className="Nav-div">
       <div className="menu">
@@ -27,7 +24,7 @@ function Nav() {
                 <img src="/assets/checklist.png" alt="" width={20} height={20} />
                 <a href="/">Today</a>
               </div>
-              <p className="count">{taskcount.today}</p>
+              <p className="count">{props.today}</p>
             </div>
           </li>
           <li>
@@ -36,7 +33,7 @@ function Nav() {
                 <img src="/assets/fast-forward-double-right-arrows-symbol.png" alt="" width={15} height={15} />
                 <a href="/Upcoming">Upcoming</a>
               </div>
-              <p className="count">{taskcount.Upcoming}</p>
+              <p className="count">{props.upcoming}</p>
             </div>
           </li>
           <li>

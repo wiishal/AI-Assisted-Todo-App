@@ -1,0 +1,54 @@
+.today-main{
+    display: flex;
+    flex-direction: row;
+    margin: 10px 20px 30px 20px; 
+    
+    width: 80%;
+}
+.today-title{
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+   font-size: larger; 
+   
+}
+.today-left{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+}
+.today-right{
+    width: 30%;
+    padding: 1rem;
+    margin: 0.5rem;
+    /* gap: 1.5rem; */
+}
+.inputDiv-title{
+    margin-bottom: 1rem;
+}
+.listSelect-div{
+    /* border: 2px solid rgb(105, 105, 105); */
+}
+.list-title{
+    color: rgb(117, 117, 117);
+    font-weight: 500;
+    padding:0.5rem ;
+}
+.button-div{
+    display: flex;
+    margin-bottom:1rem ;
+}
+.today-addTask{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border: 2px solid rgb(223, 223, 223);
+    width: 70%;
+    padding: 1em;
+    color: rgb(163, 163, 163);
+    border-radius: 5px;
+    border-left-color: rgb(255, 255, 255);
+      border-right-color: rgb(255, 255, 255);
+    
+}
