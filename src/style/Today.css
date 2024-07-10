@@ -52,3 +52,8 @@
       border-right-color: rgb(255, 255, 255);
     
 }
+.today-edit{
+     width: 20%;
+    padding: 2rem;
+    margin: 0.5rem;
+}

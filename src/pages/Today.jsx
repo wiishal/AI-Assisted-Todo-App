@@ -11,16 +11,22 @@ function Today({ props }) {
       taskid: "2",
       taskDescription: "finsished the project2 ",
     },
-  ]);
+  ]); 
   
   
   const [isInputDiv, setisInputDiv] = useState(false);
+  const [editTaskDiv, seteditTaskDiv] = useState(null)
   const [inputValue, setinputValue] = useState("");
+  const [editInputValue, seteditInputValue] = useState("");
   function handleClick() {
+  
     setisInputDiv((prev) => !prev);
   }
   function inputHandler(e) {
-    setinputValue(e.target.value);
+    setinputValue(e.target.value);  
+  }
+  function editInputHandler(e){
+    seteditInputValue(e.target.value);
   }
   function addtask() {
      if (inputValue === null || inputValue === undefined || inputValue === "") {
@@ -37,6 +43,22 @@ function Today({ props }) {
     prevTask.push(newTask);
     setTask(prevTask)
   }
+  function addEdittask(){
+    let taskArr = [...Task]
+   let prevTask = taskArr[editTaskDiv]
+   prevTask.taskDescription = editInputValue
+    setTask(taskArr);
+  }
+
+
+  function handleEditTask(i){
+    console.log("task selected",i)
+    let taskDescription = Task[i].taskDescription
+    seteditInputValue(taskDescription)
+    seteditTaskDiv(i)
+    
+   
+  }
   return (
     <div className="today-main">
       <div className="today-left">
@@ -50,12 +72,22 @@ function Today({ props }) {
             <button onClick={handleClick}>Add task</button>
           </div>
         </div>
-        <div>{Task.map((task, i)=>
-         ( <h4>{task.taskDescription}</h4>)
-        )} </div>
+        <div>
+          {Task.map((task, i) => (
+            <div style={{ border: "2px solid black" }}>
+              <h4
+                onClick={() => {
+                  handleEditTask(i);
+                }}
+              >
+                {task.taskDescription}
+              </h4>
+            </div>
+          ))}{" "}
+        </div>
       </div>
 
-      {isInputDiv == true ? (
+      {isInputDiv === true ? (
         <div className="today-right">
           <h3 className="inputDiv-title">Add Task</h3>
           <input value={inputValue} onChange={inputHandler} type="text" />
@@ -72,7 +104,27 @@ function Today({ props }) {
         </div>
       ) : null}
 
-      {true}
+      {editTaskDiv !== null ? (
+        <div className="today-edit">
+         {editTaskDiv}
+          <h3 className="inputDiv-title">Edit Task</h3>
+          <input
+            value={editInputValue}
+            onChange={editInputHandler}
+            type="text"
+          />
+          <div className="button-div">
+            <button onClick={addEdittask} className="inputDiv-btn">
+             edit
+            </button>
+            <button className="inputDiv-btn>AI assisted">AI Assistance </button>
+          </div>
+          <div className="listSelect-div">
+            <p className="list-title">Lists</p>
+            <input type="radio" />
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }
