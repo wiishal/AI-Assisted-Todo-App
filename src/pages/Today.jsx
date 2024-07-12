@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "../style/Today.css";
+import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai"
 
 function Today({ props }) {
   const [Task, setTask] = useState([
@@ -11,54 +12,74 @@ function Today({ props }) {
       taskid: "2",
       taskDescription: "finsished the project2 ",
     },
-  ]); 
-  
-  
+  ]);
+
   const [isInputDiv, setisInputDiv] = useState(false);
-  const [editTaskDiv, seteditTaskDiv] = useState(null)
+  const [editTaskDiv, seteditTaskDiv] = useState(null);
   const [inputValue, setinputValue] = useState("");
   const [editInputValue, seteditInputValue] = useState("");
   function handleClick() {
-  
-    setisInputDiv((prev) => !prev);
+    if (editTaskDiv !== null){
+     seteditTaskDiv(null);
+    }
+     setisInputDiv((prev) => !prev);
   }
   function inputHandler(e) {
-    setinputValue(e.target.value);  
+    setinputValue(e.target.value);
   }
-  function editInputHandler(e){
+  function editInputHandler(e) {
     seteditInputValue(e.target.value);
   }
   function addtask() {
-     if (inputValue === null || inputValue === undefined || inputValue === "") {
-       return;
-     }
+    if (inputValue === null || inputValue === undefined || inputValue === "") {
+      return;
+    }
     console.log(inputValue, "its task");
-    let taskIdl = Task.length
-      let newTask = {
-        taskId: taskIdl,
-        taskDescription: inputValue,
-      };
-  
-    let prevTask = [...Task]
+    let taskIdl = Task.length;
+    let newTask = {
+      taskId: taskIdl,
+      taskDescription: inputValue,
+    };
+
+    let prevTask = [...Task];
     prevTask.push(newTask);
-    setTask(prevTask)
+    setTask(prevTask);
   }
-  function addEdittask(){
-    let taskArr = [...Task]
-   let prevTask = taskArr[editTaskDiv]
-   prevTask.taskDescription = editInputValue
+  function addEdittask() {
+    let taskArr = [...Task];
+    let prevTask = taskArr[editTaskDiv];
+    prevTask.taskDescription = editInputValue;
     setTask(taskArr);
   }
 
-
-  function handleEditTask(i){
-    console.log("task selected",i)
-    let taskDescription = Task[i].taskDescription
-    seteditInputValue(taskDescription)
-    seteditTaskDiv(i)
-    
-   
+  function handleEditTask(i) {
+    console.log("task selected", i);
+    let taskDescription = Task[i].taskDescription;
+    seteditInputValue(taskDescription);
+    if (isInputDiv) {
+      setisInputDiv(false);
+    }
+    seteditTaskDiv(i);
   }
+  const parseTextToArray = (text) => {
+    return text.split("\n").map((item) => item.replace(/^\d+\.\s*"|"$/g, ""));
+  };
+  async function generatePrompt(){
+    
+    const apiUrl = import.meta.env.VITE_API_KEY;
+     const genAI = new GoogleGenerativeAI(apiUrl);
+      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+
+      const prompt = `create muultiple todos task for this text -->${inputValue}. dont include time , status just return serially like 1."xyz" note:dont add any extra thing just return 1."xyz"`;
+
+      const result = await model.generateContent(prompt);
+      const response = await result.response;
+      const text = response.text();
+    
+     let task =  parseTextToArray(text);
+      console.log(task);
+  }
+
   return (
     <div className="today-main">
       <div className="today-left">
@@ -95,7 +116,9 @@ function Today({ props }) {
             <button onClick={addtask} className="inputDiv-btn">
               Add
             </button>
-            <button className="inputDiv-btn>AI assisted">AI Assistance </button>
+            <button onClick={generatePrompt} className="inputDiv-btn">
+              AI Assistance{" "}
+            </button>
           </div>
           <div className="listSelect-div">
             <p className="list-title">Lists</p>
@@ -106,7 +129,7 @@ function Today({ props }) {
 
       {editTaskDiv !== null ? (
         <div className="today-edit">
-         {editTaskDiv}
+          {editTaskDiv}
           <h3 className="inputDiv-title">Edit Task</h3>
           <input
             value={editInputValue}
@@ -115,9 +138,9 @@ function Today({ props }) {
           />
           <div className="button-div">
             <button onClick={addEdittask} className="inputDiv-btn">
-             edit
+              edit
             </button>
-            <button className="inputDiv-btn>AI assisted">AI Assistance </button>
+            <button className="inputDiv-btn">AI Assistance </button>
           </div>
           <div className="listSelect-div">
             <p className="list-title">Lists</p>
