@@ -2,12 +2,11 @@ import { useState } from "react";
 import "../style/Nav.css";
 import Lists from "./Lists";
 
-function Nav({props}) {
- 
+function Nav({ currUser }) {
   return (
     <div className="Nav-div">
       <div className="menu">
-        <h2>Menu</h2>
+        <h4>{currUser}</h4>
         <span>
           <img src="/assets/menu.png" alt="" width={20} height={20} />
         </span>
@@ -21,19 +20,29 @@ function Nav({props}) {
           <li>
             <div className="section-div">
               <div className="icon-div">
-                <img src="/assets/checklist.png" alt="" width={20} height={20} />
+                <img
+                  src="/assets/checklist.png"
+                  alt=""
+                  width={20}
+                  height={20}
+                />
                 <a href="/">Today</a>
               </div>
-              <p className="count">{props.today}</p>
+              <p className="count"></p>
             </div>
           </li>
           <li>
             <div className="section-div">
               <div className="icon-div">
-                <img src="/assets/fast-forward-double-right-arrows-symbol.png" alt="" width={15} height={15} />
+                <img
+                  src="/assets/fast-forward-double-right-arrows-symbol.png"
+                  alt=""
+                  width={15}
+                  height={15}
+                />
                 <a href="/Upcoming">Upcoming</a>
               </div>
-              <p className="count">{props.upcoming}</p>
+              <p className="count"></p>
             </div>
           </li>
           <li>
@@ -47,10 +56,14 @@ function Nav({props}) {
           </li>
           <li>
             <div className="icon-div">
-              <img src="/assets/sticky-note.png" alt="" width={15} height={15} />
+              <img
+                src="/assets/sticky-note.png"
+                alt=""
+                width={15}
+                height={15}
+              />
               <a href="/StickyWall">Sticky Wall</a>
             </div>
-            
           </li>
         </ul>
       </nav>

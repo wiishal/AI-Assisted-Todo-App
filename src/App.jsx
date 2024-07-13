@@ -5,12 +5,13 @@ import Upcoming from "./pages/Upcoming";
 import Calender from "./pages/Calender";
 import StickyWall from "./pages/StickyWall";
 import { useState } from "react";
-function App() {
+
+function App({ user }) {
   let Component;
- const [count, setCount] = useState({
-  today:13,
-  upcoming:5
- })
+  const [count, setCount] = useState({
+    today: 13,
+    upcoming: 5,
+  });
   switch (window.location.pathname) {
     case "/":
       Component = Today;
@@ -24,12 +25,11 @@ function App() {
     case "/StickyWall":
       Component = StickyWall;
       break;
-    
   }
   return (
     <div className="main">
-      <Nav props={count} />
-      <Component props={count} />
+      <Nav currUser={user} />
+      <Component />
     </div>
   );
 }

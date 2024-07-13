@@ -2,11 +2,13 @@ import { useState } from "react";
 import "../style/Today.css";
 import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai"
 
-function Today({ props }) {
+function Today({ currUser }) {
+  
   const [Task, setTask] = useState([
     {
       taskid: "1",
       taskDescription: "finsished the project ",
+      date:""
     },
     {
       taskid: "2",
@@ -19,10 +21,10 @@ function Today({ props }) {
   const [inputValue, setinputValue] = useState("");
   const [editInputValue, seteditInputValue] = useState("");
   function handleClick() {
-    if (editTaskDiv !== null){
-     seteditTaskDiv(null);
+    if (editTaskDiv !== null) {
+      seteditTaskDiv(null);
     }
-     setisInputDiv((prev) => !prev);
+    setisInputDiv((prev) => !prev);
   }
   function inputHandler(e) {
     setinputValue(e.target.value);
@@ -64,20 +66,19 @@ function Today({ props }) {
   const parseTextToArray = (text) => {
     return text.split("\n").map((item) => item.replace(/^\d+\.\s*"|"$/g, ""));
   };
-  async function generatePrompt(){
-    
+  async function generatePrompt() {
     const apiUrl = import.meta.env.VITE_API_KEY;
-     const genAI = new GoogleGenerativeAI(apiUrl);
-      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    const genAI = new GoogleGenerativeAI(apiUrl);
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
-      const prompt = `create muultiple todos task for this text -->${inputValue}. dont include time , status just return serially like 1."xyz" note:dont add any extra thing just return 1."xyz"`;
+    const prompt = `create multiple todos task for this text -->${inputValue}. don't include time , status just return serially like 1."xyz" note:dont add any extra thing just return 1."xyz"`;
 
-      const result = await model.generateContent(prompt);
-      const response = await result.response;
-      const text = response.text();
-    
-     let task =  parseTextToArray(text);
-      console.log(task);
+    const result = await model.generateContent(prompt);
+    const response = await result.response;
+    const text = response.text();
+
+    let task = parseTextToArray(text);
+    console.log(task);
   }
 
   return (
@@ -85,7 +86,7 @@ function Today({ props }) {
       <div className="today-left">
         <div className="today-title">
           <h1>Today</h1>
-          <h1>{props.today}</h1>{" "}
+          <h1>{}</h1>{" "}
         </div>
         <div className="input-div">
           <div id="inpuDiv" className="today-addTask">
@@ -95,7 +96,7 @@ function Today({ props }) {
         </div>
         <div>
           {Task.map((task, i) => (
-            <div style={{ border: "2px solid black" }}>
+            <div key={i} style={{ border: "2px solid black", padding:"1rem", margin:"3px",width:"30%" }}>
               <h4
                 onClick={() => {
                   handleEditTask(i);
@@ -111,7 +112,7 @@ function Today({ props }) {
       {isInputDiv === true ? (
         <div className="today-right">
           <h3 className="inputDiv-title">Add Task</h3>
-          <input value={inputValue} onChange={inputHandler} type="text" />
+          <textarea value={inputValue} onChange={inputHandler} type="text" />
           <div className="button-div">
             <button onClick={addtask} className="inputDiv-btn">
               Add
@@ -141,6 +142,7 @@ function Today({ props }) {
               edit
             </button>
             <button className="inputDiv-btn">AI Assistance </button>
+            <button onClick={()=>seteditTaskDiv(null)}>Cancle</button>
           </div>
           <div className="listSelect-div">
             <p className="list-title">Lists</p>
