@@ -1,59 +1,76 @@
-.today-main{
-    display: flex;
-    flex-direction: row;
-    margin: 10px 20px 30px 20px; 
-    
-    width: 80%;
-}
-.today-title{
-    display: flex;
-    flex-direction: row;
-    gap: 40px;
-   font-size: larger; 
-   
-}
-.today-left{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+.today-main {
+  display: flex;
+  flex-direction: row;
+  margin: 10px 20px 30px 20px;
 
+  width: 80%;
 }
-.today-right{
-    width: 30%;
-    padding: 1rem;
-    margin: 0.5rem;
-    /* gap: 1.5rem; */
+.today-title {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  font-size: larger;
 }
-.inputDiv-title{
-    margin-bottom: 1rem;
+.today-left {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
-.listSelect-div{
-    /* border: 2px solid rgb(105, 105, 105); */
+.today-right {
+  width: 40%;
+  padding: 1rem;
+  margin: 0.5rem;
+  /* gap: 1.5rem; */
 }
-.list-title{
-    color: rgb(117, 117, 117);
-    font-weight: 500;
-    padding:0.5rem ;
+
+.styled-button {
+  background-color: #3333e5; /* Green background */
+  border: none; /* Remove border */
+  color: white; /* White text */
+  padding: 0.61rem 1rem; /* Some padding */
+  text-align: center; /* Centered text */
+  text-decoration: none; /* Remove underline */
+  display: inline-block; /* Make the container element */
+  font-size: 0.75em; /* Increase font size */
+  margin: 4px 2px; /* Some margin */
+  cursor: pointer; /* Pointer/hand icon on hover */
+  border-radius: 10px; /* Rounded corners */
+  transition: background-color 0.3s ease; /* Smooth transition */
 }
-.button-div{
-    display: flex;
-    margin-bottom:1rem ;
+
+.styled-button:hover {
+  background-color: #45a049; /* Darker green on hover */
 }
-.today-addTask{
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    border: 2px solid rgb(223, 223, 223);
-    width: 70%;
-    padding: 1em;
-    color: rgb(163, 163, 163);
-    border-radius: 5px;
-    border-left-color: rgb(255, 255, 255);
-      border-right-color: rgb(255, 255, 255);
-    
+
+.inputDiv-title {
+  margin-bottom: 1rem;
 }
-.today-edit{
-     width: 30%;
-    padding: 2rem;
-    margin: 0.5rem;
+.listSelect-div {
+  /* border: 2px solid rgb(105, 105, 105); */
+}
+.list-title {
+  color: rgb(117, 117, 117);
+  font-weight: 500;
+  padding: 0.5rem;
+}
+.button-div {
+  display: flex;
+  margin-bottom: 1rem;
+}
+.today-addTask {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border: 2px solid rgb(125, 125, 125);
+  width: 70%;
+  padding: 1em;
+  color: rgb(163, 163, 163);
+  border-radius: 5px;
+  border-left-color: rgb(255, 255, 255);
+  border-right-color: rgb(255, 255, 255);
+}
+.today-edit {
+  width: 40%;
+  padding: 2rem;
+  margin: 0.5rem;
 }

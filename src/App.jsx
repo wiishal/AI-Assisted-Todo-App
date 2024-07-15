@@ -5,6 +5,7 @@ import Upcoming from "./pages/Upcoming";
 import Calender from "./pages/Calender";
 import StickyWall from "./pages/StickyWall";
 import { useState } from "react";
+import { BrowserRouter, Route, Routes} from 'react-router-dom'
 
 function App({ user }) {
   let Component;
@@ -12,25 +13,19 @@ function App({ user }) {
     today: 13,
     upcoming: 5,
   });
-  switch (window.location.pathname) {
-    case "/":
-      Component = Today;
-      break;
-    case "/Upcoming":
-      Component = Upcoming;
-      break;
-    case "/Calender":
-      Component = Calender;
-      break;
-    case "/StickyWall":
-      Component = StickyWall;
-      break;
-  }
+ 
   return (
-    <div className="main">
-      <Nav currUser={user} />
-      <Component />
-    </div>
+    <BrowserRouter>
+      <div className="main">
+        <Nav currUser={user} />
+        <Routes>
+          <Route path="/" element={<Today currUser={user} />} />
+          <Route path="/Upcoming" element={<Upcoming />} />
+          <Route path="/Calender" element={<Calender />} />
+          <Route path="/StickyWall" element={<StickyWall />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 

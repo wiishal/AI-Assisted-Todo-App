@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "../style/Nav.css";
 import Lists from "./Lists";
+import { Link } from "react-router-dom";
 
 function Nav({ currUser }) {
   return (
@@ -26,7 +27,7 @@ function Nav({ currUser }) {
                   width={20}
                   height={20}
                 />
-                <a href="/">Today</a>
+                <Link to="/">Today</Link>
               </div>
               <p className="count"></p>
             </div>
@@ -40,7 +41,7 @@ function Nav({ currUser }) {
                   width={15}
                   height={15}
                 />
-                <a href="/Upcoming">Upcoming</a>
+                <Link to="/Upcoming">Upcoming</Link>
               </div>
               <p className="count"></p>
             </div>
@@ -49,7 +50,7 @@ function Nav({ currUser }) {
             <div className="section-div">
               <div className="icon-div">
                 <img src="/assets/calendar.png" alt="" width={15} height={15} />
-                <a href="/Calender">Calender</a>
+                <Link to="/Calender">Calender</Link>
               </div>
               <p className="count">0</p>
             </div>
@@ -62,7 +63,7 @@ function Nav({ currUser }) {
                 width={15}
                 height={15}
               />
-              <a href="/StickyWall">Sticky Wall</a>
+              <Link to="/StickyWall">Sticky Wall</Link>
             </div>
           </li>
         </ul>

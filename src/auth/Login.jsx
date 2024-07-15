@@ -5,7 +5,7 @@ function Login({ variable, handle }) {
   const [username, setUsername] = useState("")
   const [password, setpassword] = useState("");
   console.log(variable);
-
+handle(true, "vishal"); ////-------------------------------> devlopment
   function handleUsename(e){
     setUsername(e.target.value)
   }
@@ -15,12 +15,13 @@ function Login({ variable, handle }) {
   function submit(){
     console.log("in submit", username)
     axios
-      .post("http://localhost:3001/auth/", {
+      .post("http://localhost:3001/auth/login", {
         username: username,
         password: password,
       })
       .then(function (response) {
-        console.log(response.data.user);
+        console.log(response.data.token);
+        localStorage.setItem('authToken', response.data.token)
         handle(true, response.data.user);
       })
       .catch(function (error) {

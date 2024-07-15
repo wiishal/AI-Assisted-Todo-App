@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom/client'
-import Todo from './Todo.jsx'
-import Nav from './componant/Nav.jsx'
+
 import App from './App.jsx'
 import Login from './auth/Login.jsx'
 
