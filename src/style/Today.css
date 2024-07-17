@@ -3,7 +3,7 @@
   flex-direction: row;
   margin: 10px 20px 30px 20px;
 
-  width: 80%;
+  width: 70%;
 }
 .today-title {
   display: flex;
@@ -73,4 +73,24 @@
   width: 40%;
   padding: 2rem;
   margin: 0.5rem;
+}
+::-webkit-scrollbar {
+  width: 1px; /* Width of the entire scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 10px;
+}
+
+/* Style the scrollbar thumb */
+::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 10px;
+  /* border: 3px solid #f1f1f1; Adds space around the thumb */
+}
+
+/* Style the scrollbar thumb on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Color of the scrollbar thumb when hovered */
 }

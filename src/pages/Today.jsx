@@ -142,13 +142,24 @@ function Today({ currUser }) {
 
   // add subtask
   function addSubTask(id) {
-    const task = [...Task];
+    if(subtaskInput == "") return
+    console.log(id)
+    
     const newSubtask = {
       text: subtaskInput,
       status: false,
     };
-    task[id].subtask.push(newSubtask);
-    console.log(task[id].subtask);
+     axios
+       .post("http://localhost:3001/api/addSubTask", {
+         id: id,
+         subtask: newSubtask,
+       })
+       .then((res) => {
+         console.log(res.data);
+         fetchTasks();
+       });
+   
+    
     setSubTaskInput("");
   }
 
@@ -164,11 +175,16 @@ function Today({ currUser }) {
   }
 
   //check sub task
-  function checkSubTask(task, subtaskid) {
-    const arrofTask = [...Task];
-    const status = arrofTask[task].subtask[subtaskid].status;
-    arrofTask[task].subtask[subtaskid].status = !status;
-    setTask(arrofTask);
+  function checkSubTask(id, i) {
+    axios
+      .post("http://localhost:3001/api/checkSubTask", {
+        id: id,
+        index:i
+      })
+      .then((res) => {
+        console.log(res.data);
+        fetchTasks();
+      });
   }
 
   const parseTextToArray = (text) => {
@@ -206,7 +222,7 @@ function Today({ currUser }) {
             </button>
           </div>
         </div>
-        <div>
+        <div style={{ overflowY: "scroll", width: "70%" }}>
           {Task.map((task, i) => (
             <div
               key={task.taskId}
@@ -215,7 +231,7 @@ function Today({ currUser }) {
                 color: "black",
                 padding: "0.5rem",
                 margin: "3px",
-                width: "70%",
+
                 display: "flex",
                 justifyContent: "space-between",
               }}
@@ -414,13 +430,13 @@ function Today({ currUser }) {
             />
             <button
               className="styled-button"
-              onClick={() => addSubTask(editTaskDiv)}
+              onClick={() => addSubTask(Task[editTaskDiv].taskId)}
             >
               Add
             </button>
             {Task[editTaskDiv].subtask.map((task, i) => (
               <div
-                onClick={() => checkSubTask(editTaskDiv, i)}
+                onClick={() => checkSubTask(Task[editTaskDiv].taskId, i)}
                 style={{
                   display: "flex",
                   flexDirection: "row",
