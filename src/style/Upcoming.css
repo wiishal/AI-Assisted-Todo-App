@@ -35,10 +35,43 @@
   padding: 0.5rem;
   font-size: 0.8em;
   font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
 }
 .UpcomingTask-Div {
   display: flex;
   flex-direction: row;
   gap: 1rem;
   padding: 2rem;
+}
+.displayTask-Div{
+  padding: 1rem;
+  background-color: whitesmoke;
+  min-width: 300px;
+  max-width: 300px;
+
+  
+}
+.displayTaskTitleName{
+  font-size: medium;
+  text-transform: capitalize;
+  font-weight: 500;
+  
+}
+
+.subTaskimgDiv{
+ display: flex;
+ align-items: center;
+}
+.displayTaskItem{
+   border-bottom: 1px solid rgb(208, 208, 208);
+  padding: 0.5rem;
+  font-size: 0.8em;
+  font-weight: 500;
+  cursor: pointer;
+  
+}
+.subtask-Div{
+  margin-top: 1rem;
 }

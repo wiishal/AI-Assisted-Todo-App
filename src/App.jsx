@@ -19,7 +19,7 @@ function App({ user }) {
       <div className="main">
         <Nav currUser={user} />
         <Routes>
-          <Route path="/" element={<Today currUser={user} />} />
+          <Route path="/" element={<Today />} />
           <Route path="/Upcoming" element={<Upcoming />} />
           <Route path="/Calender" element={<Calender />} />
           <Route path="/StickyWall" element={<StickyWall />} />

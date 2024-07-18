@@ -10,6 +10,7 @@ function Upcoming() {
     tomorrow: [],
     other: [],
   });
+  const [isdiplayTask, setIsDisplayTask] = useState(null);
 
   useEffect(() => {
     fetchTask();
@@ -21,7 +22,7 @@ function Upcoming() {
       .then((response) => {
         console.log(response.data.array);
         const grouped = groupTasksByDate(response.data.array);
-        setTasks(response.data.Array);
+        setTasks(response.data.array);
 
         console.log("grouped", grouped);
         setGroupedTasks(grouped);
@@ -31,6 +32,14 @@ function Upcoming() {
       });
   };
 
+  function displayTask(id) {
+    for (let i = 0; i < Tasks.length; i++) {
+      if (Tasks[i].taskId === id) {
+        setIsDisplayTask(i);
+        return;
+      }
+    }
+  }
   const formatDate = (date) => {
     const day = String(date.getDate()).padStart(2, "0");
     const month = String(date.getMonth() + 1); // Months are zero-indexed
@@ -86,7 +95,10 @@ function Upcoming() {
           </div>
           <div className="todayTaskItem-Div">
             {groupedTasks.today.map((task) => (
-              <div className="todayTaskItem">
+              <div
+                onClick={() => displayTask(task.taskId)}
+                className="todayTaskItem"
+              >
                 {task.status == true ? (
                   <p style={{ textDecoration: "line-through" }}>
                     {task.taskDescription}
@@ -94,6 +106,7 @@ function Upcoming() {
                 ) : (
                   <p>{task.taskDescription}</p>
                 )}
+                <p>{task.subtask.length}</p>
               </div>
             ))}
           </div>
@@ -105,7 +118,10 @@ function Upcoming() {
           </div>
           <div className="todayTaskItem-Div">
             {groupedTasks.tomorrow.map((task) => (
-              <div className="todayTaskItem">
+              <div
+                onClick={() => displayTask(task.taskId)}
+                className="todayTaskItem"
+              >
                 {task.status == true ? (
                   <p style={{ textDecoration: "line-through" }}>
                     {task.taskDescription}
@@ -113,6 +129,7 @@ function Upcoming() {
                 ) : (
                   <p>{task.taskDescription}</p>
                 )}
+                <p>{task.subtask.length}</p>
               </div>
             ))}
           </div>
@@ -124,7 +141,10 @@ function Upcoming() {
           </div>
           <div className="todayTaskItem-Div">
             {groupedTasks.other.map((task) => (
-              <div className="todayTaskItem">
+              <div
+                onClick={() => displayTask(task.taskId)}
+                className="todayTaskItem"
+              >
                 {task.status == true ? (
                   <p style={{ textDecoration: "line-through" }}>
                     {task.taskDescription}
@@ -132,10 +152,42 @@ function Upcoming() {
                 ) : (
                   <p>{task.taskDescription}</p>
                 )}
+                <p>{task.subtask.length}</p>
               </div>
             ))}
           </div>
         </div>
+        {isdiplayTask !== null ? (
+          <div className="displayTask-Div">
+            <p className="displayTaskTitleName">Task:</p>
+            <p className="displayTaskItem">
+              {Tasks[isdiplayTask].taskDescription}
+            </p>
+            <div className="subtask-Div">
+              <p className="displayTaskTitleName">Sub Tasks</p>
+              {Tasks[isdiplayTask].subtask.map((subtask) => (
+                <div className="subTaskimgDiv">
+                  {subtask.status === false ? (
+                    <img
+                      src="/assets/check-box-empty.png"
+                      alt=""
+                      width={14}
+                      height={14}
+                    />
+                  ) : (
+                    <img
+                      src="/assets/check-box-with-check-sign.png"
+                      alt=""
+                      width={14}
+                      height={14}
+                    />
+                  )}
+                  <p className="displayTaskItem">{subtask.text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        ) : null}
       </div>
     </div>
   );
