@@ -5,7 +5,7 @@ function Login({ variable, handle }) {
   const [username, setUsername] = useState("")
   const [password, setpassword] = useState("");
   console.log(variable);
-handle(true, "vishal"); ////-------------------------------> devlopment
+////-------------------------------> devlopment
   function handleUsename(e){
     setUsername(e.target.value)
   }
