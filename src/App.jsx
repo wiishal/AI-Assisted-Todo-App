@@ -10,17 +10,17 @@ import { BrowserRouter, Route, Routes} from 'react-router-dom'
 function App({ user }) {
   let Component;
   const [count, setCount] = useState({
-    today: 13,
-    upcoming: 5,
+    today: 0,
+    upcoming: 0,
   });
  
   return (
     <BrowserRouter>
       <div className="main">
-        <Nav currUser={user} />
+        <Nav currUser={user} count={count} />
         <Routes>
-          <Route path="/" element={<Today />} />
-          <Route path="/Upcoming" element={<Upcoming />} />
+          <Route path="/" element={<Today navCount={setCount} />} />
+          <Route path="/Upcoming" element={<Upcoming navCount={setCount} />} />
           <Route path="/Calender" element={<Calender />} />
           <Route path="/StickyWall" element={<StickyWall />} />
         </Routes>

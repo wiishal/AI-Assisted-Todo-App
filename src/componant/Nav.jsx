@@ -3,7 +3,8 @@ import "../style/Nav.css";
 import Lists from "./Lists";
 import { Link } from "react-router-dom";
 
-function Nav({ currUser }) {
+function Nav({ currUser, count }) {
+  const {today,upcoming} = count
   return (
     <div className="Nav-div">
       <div className="menu">
@@ -29,7 +30,7 @@ function Nav({ currUser }) {
                 />
                 <Link to="/">Today</Link>
               </div>
-              <p className="count"></p>
+              <p className="count">{today}</p>
             </div>
           </li>
           <li>
@@ -43,7 +44,7 @@ function Nav({ currUser }) {
                 />
                 <Link to="/Upcoming">Upcoming</Link>
               </div>
-              <p className="count"></p>
+              <p className="count">{upcoming}</p>
             </div>
           </li>
           <li>

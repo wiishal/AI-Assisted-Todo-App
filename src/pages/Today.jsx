@@ -3,7 +3,7 @@ import axios from "axios";
 import "../style/Today.css";
 import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai";
 
-function Today({ currUser }) {
+function Today({ currUser, navCount }) {
   const [Task, setTask] = useState([]);
 
   const [isInputDiv, setisInputDiv] = useState(false);
@@ -39,6 +39,12 @@ function Today({ currUser }) {
       .then((response) => {
         console.log(response.data);
         setTask(response.data.array);
+        
+        navCount((prevCount) => ({
+          ...prevCount, // spread the existing state
+          today: response.data.array.length // update the 'today' property
+        }));
+
       })
       .catch((error) => {
         console.log(error);
@@ -87,7 +93,7 @@ function Today({ currUser }) {
       return;
     }
     console.log(inputValue, "its task");
-    let taskIdl = Task.length+1;
+    let taskIdl = Task.length + 1;
     let newTask = {
       taskId: taskIdl,
       taskDescription: inputValue,
@@ -111,67 +117,64 @@ function Today({ currUser }) {
 
   //edit task
   function addEdittask(id) {
-    console.log(id, " id from edit")
+    console.log(id, " id from edit");
     axios
       .post("http://localhost:3001/api/update", {
-        id:id,
+        id: id,
         editValue: editInputValue,
       })
       .then((res) => {
         console.log(res);
-        
+
         fetchTasks();
       });
-    
   }
 
   function handleEditTask(Id) {
     console.log("task selected", Id);
     for (let i = 0; i < Task.length; i++) {
-      if(Task[i].taskId == Id){
-       seteditInputValue(Task[i].taskDescription)
+      if (Task[i].taskId == Id) {
+        seteditInputValue(Task[i].taskDescription);
         seteditTaskDiv(i);
-      } 
-
+      }
     }
     if (isInputDiv) {
       setisInputDiv(false);
     }
-    
   }
 
   // add subtask
   function addSubTask(id) {
-    if(subtaskInput == "") return
-    console.log(id)
-    
+    if (subtaskInput == "") return;
+    console.log(id);
+
     const newSubtask = {
       text: subtaskInput,
       status: false,
     };
-     axios
-       .post("http://localhost:3001/api/addSubTask", {
-         id: id,
-         subtask: newSubtask,
-       })
-       .then((res) => {
-         console.log(res.data);
-         fetchTasks();
-       });
-   
-    
+    axios
+      .post("http://localhost:3001/api/addSubTask", {
+        id: id,
+        subtask: newSubtask,
+      })
+      .then((res) => {
+        console.log(res.data);
+        fetchTasks();
+      });
+
     setSubTaskInput("");
   }
 
   //check task
   function checkTask(id) {
-    axios.post("http://localhost:3001/api/checkTask", {
-      id: id,
-    }).then(res =>{
-      console.log(res.data)
-      fetchTasks()
-
-    });
+    axios
+      .post("http://localhost:3001/api/checkTask", {
+        id: id,
+      })
+      .then((res) => {
+        console.log(res.data);
+        fetchTasks();
+      });
   }
 
   //check sub task
@@ -179,7 +182,7 @@ function Today({ currUser }) {
     axios
       .post("http://localhost:3001/api/checkSubTask", {
         id: id,
-        index:i
+        index: i,
       })
       .then((res) => {
         console.log(res.data);
@@ -212,7 +215,7 @@ function Today({ currUser }) {
       <div className="today-left">
         <div className="today-title">
           <h1>Today</h1>
-          <h1>{}</h1>{" "}
+          <h1>{Task.length}</h1>{" "}
         </div>
         <div className="input-div">
           <div id="inpuDiv" className="today-addTask">

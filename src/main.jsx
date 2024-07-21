@@ -1,12 +1,36 @@
-import React, { useState } from 'react'
-import ReactDOM from 'react-dom/client'
+import React, { useEffect, useState } from "react";
+import ReactDOM from "react-dom/client";
+import axios from "axios";
+import App from "./App.jsx";
 
-import App from './App.jsx'
-import Login from './auth/Login.jsx'
+import LoginNew from "./auth/LoginNew.jsx";
 
 const Main = () => {
-  const [isLogin, setIsLogin] = useState(false);
-  const [currusername, setcurrUsername] = useState()
+
+   const [isLogin, setIsLogin] = useState(false);
+   const [currusername, setcurrUsername] = useState();
+
+
+  useEffect(()=>{
+    userCheck()
+  },[])
+  function userCheck() {
+    const token = localStorage.getItem("authToken");
+    if (token) {
+      axios
+        .post("http://localhost:3001/auth/verifyToken", {
+          token: token,
+        })
+        .then(function (response) {
+          console.log(response.data.msg);
+          handleLogin(true , response.data.user);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
+  }
+ 
 
   const handleLogin = (status, user) => {
     setIsLogin(status);
@@ -19,7 +43,7 @@ const Main = () => {
       {isLogin ? (
         <App user={currusername} />
       ) : (
-        <Login variable={isLogin} handle={handleLogin} />
+        <LoginNew variable={isLogin} handle={handleLogin} />
       )}
     </React.StrictMode>
   );

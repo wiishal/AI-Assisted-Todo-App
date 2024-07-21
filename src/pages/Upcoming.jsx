@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import "../style/Upcoming.css";
 
-function Upcoming() {
+function Upcoming({ navCount }) {
   const [Tasks, setTasks] = useState([]);
   const [TaskLength, setTaskLenght] = useState(0);
   const [groupedTasks, setGroupedTasks] = useState({
@@ -26,6 +26,8 @@ function Upcoming() {
 
         console.log("grouped", grouped);
         setGroupedTasks(grouped);
+        console.log(groupedTasks.tomorrow.length);
+        
       })
       .catch((error) => {
         console.log(error);
@@ -78,14 +80,18 @@ function Upcoming() {
         groupedTasks.other.push(task);
       }
     });
-
+       navCount((prev) => ({
+         ...prev,
+         upcoming: groupedTasks.tomorrow.length,
+       }));
+       console.log(groupedTasks.tomorrow.length)
     return groupedTasks;
   };
   return (
     <div className="Upcoming-main">
       <div className="titleDiv">
         <h3 className="header">Upcoming Task</h3>
-        <p className="taskCount">{TaskLength}</p>
+        <p className="taskCount">{groupedTasks.tomorrow.length}</p>
       </div>
 
       <div className="UpcomingTask-Div">
