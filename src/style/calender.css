@@ -1,0 +1,19 @@
+.main-Calender{
+    padding: 4rem;
+    width: 50%;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+}
+.title-calender{
+    /* font-size: large; */
+}
+.title-div{
+    border-bottom: 2px solid black;
+}
+.date-input{
+    width: fit-content;
+    border: 1px solid rgb(180,180,180);
+    border-radius: 10px;
+    padding: 0.5em;
+}

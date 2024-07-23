@@ -47,6 +47,8 @@ const Main = () => {
       )}
     </React.StrictMode>
   );
+
+ 
 };
 
 ReactDOM.createRoot(document.getElementById("root")).render(<Main />);
