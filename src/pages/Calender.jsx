@@ -12,8 +12,8 @@ function Calender() {
     fetchTask();
     // const formatedDate = getformateDate();
     setTaskformattedDate(getformateDate());
-    console.log(filterTasks)
-    filterTask();
+    console.log(filterTasks);
+    // filterTask();
   }, []);
   const fetchTask = () => {
     axios
@@ -27,9 +27,9 @@ function Calender() {
       });
   };
   function filterTask(formateDate) {
-    
-    let task = [...Tasks].filter((task)=> task.date == formateDate);
-    
+    let task = [...Tasks].filter((task) => task.date == formateDate);
+    console.log(task);
+    setFilterTask(task);
   }
   function getformateDate(date) {
     const today = date ? new Date(date) : new Date();
@@ -49,6 +49,7 @@ function Calender() {
     setTaskformattedDate(formateDate);
     filterTask(formateDate);
   }
+  
 
   return (
     <div className="main-Calender">
@@ -61,30 +62,36 @@ function Calender() {
         type="date"
         value={date}
       />
-      <div>
+      <div className="filterTaskDiv">
         {filterTasks.length === 0 ? (
-          <div key="renderDiv">
-            {Tasks.map((task, i) => (
-              <RenderTask key={i} task={task}  />
-            ))}
+          <div style={{ color: "rgb(180,180,180)" }} key="renderDiv">
+            <p>{date}</p>
+            <p> No tasks</p>
           </div>
         ) : (
-          <div>
+          <div className="taskCardDiv">
             {filterTasks.map((task, i) => (
               <RenderTask key={i} task={task} />
             ))}
           </div>
         )}
       </div>
+      <div
+        style={{ borderTop: "1px solid rgb(180,180,180)" }}
+        className="taskCardDiv"
+      >
+        {Tasks.map((task, i) => (
+          <RenderTask key={i} task={task} />
+        ))}
+      </div>
     </div>
   );
 }
-function RenderTask({task }){
-
+function RenderTask({ task }) {
   return (
-    <div >
-      <p>{task.taskDescription}</p>
-      <p>{task.date}</p>
+    <div className="taskCard">
+      <p className="calender-taskTitle">{task.taskDescription}</p>
+      <p className="calender-taskDate">{task.date}</p>
     </div>
   );
 }

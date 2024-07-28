@@ -17,3 +17,29 @@
     border-radius: 10px;
     padding: 0.5em;
 }
+.taskCardDiv{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 2em;
+    gap: 1em;
+    /* border: 1px solid black; */
+}
+.filterTaskDiv{
+    width: fit-content;
+}
+.taskCard{
+    padding: 1em;
+    border: 1px solid rgb(180,180,180);
+    border-radius: 1rem;
+     box-shadow: 1px 8px 10px #8888886b ;
+}
+.calender-taskTitle{
+    font-size:medium;
+}
+.calender-taskDate{
+    font-size: small;
+    font-weight: 600;
+    color:rgb(180,180,180) ;
+  
+}
