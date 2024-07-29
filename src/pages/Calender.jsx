@@ -91,7 +91,11 @@ function RenderTask({ task }) {
   return (
     <div className="taskCard">
       <p className="calender-taskTitle">{task.taskDescription}</p>
+      <div className="calender-taskElement">
+
       <p className="calender-taskDate">{task.date}</p>
+      <p className="calender-taskSubtask">{task.subtask.length} subtask</p>
+      </div>
     </div>
   );
 }

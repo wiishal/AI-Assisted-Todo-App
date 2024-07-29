@@ -12,24 +12,25 @@ const Main = () => {
 
 
   useEffect(()=>{
-    userCheck()
+    
+      const token = localStorage.getItem("authToken");
+      if (token) {
+        axios
+          .post("http://localhost:3001/auth/verifyToken", {
+            token: token,
+          })
+          .then(function (response) {
+            console.log(response.data.msg);
+            handleLogin(true, response.data.user);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      }
+    
   },[])
-  function userCheck() {
-    const token = localStorage.getItem("authToken");
-    if (token) {
-      axios
-        .post("http://localhost:3001/auth/verifyToken", {
-          token: token,
-        })
-        .then(function (response) {
-          console.log(response.data.msg);
-          handleLogin(true , response.data.user);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-    }
-  }
+
+ 
  
 
   const handleLogin = (status, user) => {

@@ -36,10 +36,20 @@
 }
 .calender-taskTitle{
     font-size:medium;
+    padding-right: 1em;
+}
+.calender-taskElement{
+    display: flex;
+    flex-direction: column;
 }
 .calender-taskDate{
     font-size: small;
     font-weight: 600;
     color:rgb(180,180,180) ;
   
+}
+.calender-taskSubtask{
+     font-size: small;
+    font-weight: 600;
+    color:rgb(40, 39, 39) ;
 }
