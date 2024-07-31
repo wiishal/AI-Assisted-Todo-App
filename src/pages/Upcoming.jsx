@@ -26,7 +26,7 @@ function Upcoming({ navCount }) {
 
         console.log("grouped", grouped);
         setGroupedTasks(grouped);
-        console.log(groupedTasks.tomorrow.length);
+        // console.log(groupedTasks.tomorrow.length);
         
       })
       .catch((error) => {
@@ -43,7 +43,7 @@ function Upcoming({ navCount }) {
     }
   }
   const formatDate = (date) => {
-    const day = String(date.getDate()).padStart(2, "0");
+    const day = String(date.getDate())
     const month = String(date.getMonth() + 1); // Months are zero-indexed
     const year = String(date.getFullYear()).slice(-2); // Get last 2 digits of the year
     return `${day}-${month}-${year}`;
@@ -56,15 +56,16 @@ function Upcoming({ navCount }) {
   const getTomorrowDate = () => {
     const tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
+    console.log(tomorrow.getDate() + 1 , "from tomorrow" , tomorrow);
     return formatDate(tomorrow);
   };
 
   const groupTasksByDate = (Tasks) => {
-    console.log(Tasks.length, "from grp");
+    // console.log(Tasks.length, "from grp");
     setTaskLenght(Tasks.length);
     const today = getTodayDate();
     const tomorrow = getTomorrowDate();
-
+     console.log(tomorrow, "for each");
     const groupedTasks = {
       today: [],
       tomorrow: [],
@@ -75,6 +76,7 @@ function Upcoming({ navCount }) {
       if (task.date === today) {
         groupedTasks.today.push(task);
       } else if (task.date === tomorrow) {
+       
         groupedTasks.tomorrow.push(task);
       } else {
         groupedTasks.other.push(task);
@@ -89,111 +91,51 @@ function Upcoming({ navCount }) {
   };
   return (
     <div className="Upcoming-main">
-      <div className="titleDiv">
-        <h3 className="header">Upcoming Task</h3>
-        <p className="taskCount">{groupedTasks.tomorrow.length}</p>
+      <div className="Upcoming-main-title">
+        <h1>Upcoming </h1>
+        <h1>{groupedTasks.tomorrow.length}</h1>
       </div>
-
-      <div className="UpcomingTask-Div">
-        <div className="TodayTask-div">
-          <div className="todayTaskTitle-div">
-            <p className="todayTaskTitleName">today</p>
-          </div>
-          <div className="todayTaskItem-Div">
-            {groupedTasks.today.map((task) => (
-              <div
-                onClick={() => displayTask(task.taskId)}
-                className="todayTaskItem"
-              >
-                {task.status == true ? (
-                  <p style={{ textDecoration: "line-through" }}>
-                    {task.taskDescription}
-                  </p>
-                ) : (
-                  <p>{task.taskDescription}</p>
-                )}
-                <p>{task.subtask.length}</p>
-              </div>
-            ))}
-          </div>
+      <div className="Upcoming-top">
+        <p className="Upcoming-titles">Today</p>
+        <div className="Upcoming-task-div">
+          {groupedTasks.today.map((task) => (
+            // <h4>{task.taskDescription}</h4>
+            <TaskTemplate task={task} />
+          ))}
         </div>
-
-        <div className="TodayTask-div">
-          <div className="todayTaskTitle-div">
-            <p className="todayTaskTitleName">tomorrow</p>
-          </div>
-          <div className="todayTaskItem-Div">
+      </div>
+      <div className="Upcoming-bottom">
+        <div className="Upcoming-bottom-left">
+          <p className="Upcoming-titles">Tommorrow</p>
+          <div className="Upcoming-task-div">
             {groupedTasks.tomorrow.map((task) => (
-              <div
-                onClick={() => displayTask(task.taskId)}
-                className="todayTaskItem"
-              >
-                {task.status == true ? (
-                  <p style={{ textDecoration: "line-through" }}>
-                    {task.taskDescription}
-                  </p>
-                ) : (
-                  <p>{task.taskDescription}</p>
-                )}
-                <p>{task.subtask.length}</p>
-              </div>
+              // <h4>{task.taskDescription}</h4>
+              <TaskTemplate task={task} />
             ))}
           </div>
         </div>
-
-        <div className="TodayTask-div">
-          <div className="todayTaskTitle-div">
-            <p className="todayTaskTitleName">Other</p>
-          </div>
-          <div className="todayTaskItem-Div">
+        <div className="Upcoming-bottom-right">
+          <p className="Upcoming-titles">Week</p>
+          <div className="Upcoming-task-div">
             {groupedTasks.other.map((task) => (
-              <div
-                onClick={() => displayTask(task.taskId)}
-                className="todayTaskItem"
-              >
-                {task.status == true ? (
-                  <p style={{ textDecoration: "line-through" }}>
-                    {task.taskDescription}
-                  </p>
-                ) : (
-                  <p>{task.taskDescription}</p>
-                )}
-                <p>{task.subtask.length}</p>
-              </div>
+              // <h4>{task.taskDescription}</h4>
+              <TaskTemplate task={task} />
             ))}
           </div>
         </div>
-        {isdiplayTask !== null ? (
-          <div className="displayTask-Div">
-            <p className="displayTaskTitleName">Task:</p>
-            <p className="displayTaskItem">
-              {Tasks[isdiplayTask].taskDescription}
-            </p>
-            <div className="subtask-Div">
-              <p className="displayTaskTitleName">Sub Tasks</p>
-              {Tasks[isdiplayTask].subtask.map((subtask) => (
-                <div className="subTaskimgDiv">
-                  {subtask.status === false ? (
-                    <img
-                      src="/assets/check-box-empty.png"
-                      alt=""
-                      width={14}
-                      height={14}
-                    />
-                  ) : (
-                    <img
-                      src="/assets/check-box-with-check-sign.png"
-                      alt=""
-                      width={14}
-                      height={14}
-                    />
-                  )}
-                  <p className="displayTaskItem">{subtask.text}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        ) : null}
+      </div>
+    </div>
+  );
+}
+
+function TaskTemplate({task}){
+ 
+  return (
+    <div className="Upcoming-task" key={task.taskId}>
+      <img src="/assets/dry-clean.png" alt="" width={13} height={13} />
+      <div className="Upcoming-task-subdiv">
+        <p className="Upcoming-task-title">{task.taskDescription}</p>
+        <img src="/assets/right-arrow.png" alt="" width={13} height={13} />
       </div>
     </div>
   );

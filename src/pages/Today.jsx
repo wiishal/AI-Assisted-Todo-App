@@ -34,6 +34,7 @@ function Today({ currUser, navCount }) {
   }, []);
 
   const fetchTasks = () => {
+    console.log("fetch task trigger")
     axios
       .get("http://localhost:3001/api/")
       .then((response) => {
@@ -93,7 +94,7 @@ function Today({ currUser, navCount }) {
       return;
     }
     console.log(inputValue, "its task");
-    let taskIdl = Task.length + 1;
+    let taskIdl = Math.random();
     let newTask = {
       taskId: taskIdl,
       taskDescription: inputValue,
@@ -209,6 +210,16 @@ function Today({ currUser, navCount }) {
     setAiResult(task);
     console.log(aiResult);
   }
+  function handleDelete(id){
+    // if(id === "") return
+    console.log("handledleete trigger")
+    axios
+      .delete(`http://localhost:3001/api/delete-todo/${id}`)
+      .then((res) => {
+        console.log(res.data, " deleted arry");
+        fetchTasks();
+      });
+  }
 
   return (
     <div className="today-main">
@@ -310,6 +321,14 @@ function Today({ currUser, navCount }) {
                   >
                     {task.subtask.length} Subtask
                   </p>
+                  <img onClick={()=>{
+                    handleDelete(task.taskId)
+                  }} style={{cursor:"pointer", marginLeft:"1rem"}}
+                    src="/assets/delete.png"
+                    alt=""
+                    width={15}
+                    height={15}
+                  />
                 </div>
               </div>
               <div style={{ display: "flex", alignItems: "center" }}>

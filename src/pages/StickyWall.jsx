@@ -1,7 +1,10 @@
+import "../style/stickyWall.css"
+
 function StickyWall(){
     return(
-        <div>
-            <h1>Sticky Div</h1>
+        <div className="sticky-main">
+            <h1 className="sticky-mainTitle">Sticky Div</h1>
+            
         </div>
     )
 }
