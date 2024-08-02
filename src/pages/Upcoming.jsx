@@ -27,7 +27,6 @@ function Upcoming({ navCount }) {
         console.log("grouped", grouped);
         setGroupedTasks(grouped);
         // console.log(groupedTasks.tomorrow.length);
-        
       })
       .catch((error) => {
         console.log(error);
@@ -43,7 +42,7 @@ function Upcoming({ navCount }) {
     }
   }
   const formatDate = (date) => {
-    const day = String(date.getDate())
+    const day = String(date.getDate());
     const month = String(date.getMonth() + 1); // Months are zero-indexed
     const year = String(date.getFullYear()).slice(-2); // Get last 2 digits of the year
     return `${day}-${month}-${year}`;
@@ -56,7 +55,7 @@ function Upcoming({ navCount }) {
   const getTomorrowDate = () => {
     const tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
-    console.log(tomorrow.getDate() + 1 , "from tomorrow" , tomorrow);
+    console.log(tomorrow.getDate() + 1, "from tomorrow", tomorrow);
     return formatDate(tomorrow);
   };
 
@@ -65,7 +64,7 @@ function Upcoming({ navCount }) {
     setTaskLenght(Tasks.length);
     const today = getTodayDate();
     const tomorrow = getTomorrowDate();
-     console.log(tomorrow, "for each");
+    console.log(tomorrow, "for each");
     const groupedTasks = {
       today: [],
       tomorrow: [],
@@ -76,17 +75,16 @@ function Upcoming({ navCount }) {
       if (task.date === today) {
         groupedTasks.today.push(task);
       } else if (task.date === tomorrow) {
-       
         groupedTasks.tomorrow.push(task);
       } else {
         groupedTasks.other.push(task);
       }
     });
-       navCount((prev) => ({
-         ...prev,
-         upcoming: groupedTasks.tomorrow.length,
-       }));
-       console.log(groupedTasks.tomorrow.length)
+    navCount((prev) => ({
+      ...prev,
+      upcoming: groupedTasks.tomorrow.length,
+    }));
+    console.log(groupedTasks.tomorrow.length);
     return groupedTasks;
   };
   return (
@@ -128,13 +126,27 @@ function Upcoming({ navCount }) {
   );
 }
 
-function TaskTemplate({task}){
- 
+function TaskTemplate({ task }) {
   return (
     <div className="Upcoming-task" key={task.taskId}>
-      <img src="/assets/dry-clean.png" alt="" width={13} height={13} />
+      {task.status === false ? (
+        <img src="/assets/dry-clean.png" alt="" width={13} height={13} />
+      ) : (
+        <img src="/assets/check-mark.png" alt="" width={13} height={13} />
+      )}
+
       <div className="Upcoming-task-subdiv">
-        <p className="Upcoming-task-title">{task.taskDescription}</p>
+        {task.status === false ? (
+          <p className="Upcoming-task-title">{task.taskDescription}</p>
+        ) : (
+          <p
+            className="Upcoming-task-title"
+            style={{ color: "rgb(217, 217, 217);" }}
+          >
+            {task.taskDescription}
+          </p>
+        )}
+
         <img src="/assets/right-arrow.png" alt="" width={13} height={13} />
       </div>
     </div>
