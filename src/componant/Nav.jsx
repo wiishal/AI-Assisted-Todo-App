@@ -1,10 +1,11 @@
 import { useState } from "react";
 import "../style/Nav.css";
-import Lists from "./Lists";
+
 import { Link } from "react-router-dom";
 
 function Nav({ currUser, count }) {
   const {today,upcoming} = count
+  const [lists , setLists] = useState(["person", "work"])
   return (
     <div className="Nav-div">
       <div className="menu">
@@ -72,12 +73,15 @@ function Nav({ currUser, count }) {
       <nav>
         <span>Lists</span>
         <ul>
-          <li>
-            <Lists props="Personal"></Lists>
-          </li>
-          <li>
-            <Lists props="Work"></Lists>
-          </li>
+          {lists.map((item, index) => (
+            <li key={index}>
+              <div className="section-div">
+                <div className="icon-div">
+                  <Link to={`/Lists/${item}`}>{item}</Link>
+                </div>
+              </div>
+            </li>
+          ))}
         </ul>
       </nav>
     </div>

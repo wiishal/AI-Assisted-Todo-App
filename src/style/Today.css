@@ -77,7 +77,18 @@
 ::-webkit-scrollbar {
   width: 1px; /* Width of the entire scrollbar */
 }
+.TodayListDiv{
+  display: flex;
+  gap: 0.5rem;
 
+}
+.Todaylist{
+  display: flex;
+  gap: 0.5em;
+  font-size: small;
+  font-weight: 600;
+  align-items: center;
+}
 ::-webkit-scrollbar-track {
   background: transparent;
   border-radius: 10px;

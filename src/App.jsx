@@ -6,6 +6,7 @@ import Calender from "./pages/Calender";
 import StickyWall from "./pages/StickyWall";
 import { useState } from "react";
 import { BrowserRouter, Route, Routes} from 'react-router-dom'
+import ListDetails from "./componant/ListDetails.jsx";
 
 function App({ user }) {
   let Component;
@@ -23,6 +24,7 @@ function App({ user }) {
           <Route path="/Upcoming" element={<Upcoming navCount={setCount} />} />
           <Route path="/Calender" element={<Calender />} />
           <Route path="/StickyWall" element={<StickyWall />} />
+          <Route path="/Lists/:item" element={<ListDetails />} />
         </Routes>
       </div>
     </BrowserRouter>

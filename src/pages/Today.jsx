@@ -14,7 +14,7 @@ function Today({ currUser, navCount }) {
   const [editInputValue, seteditInputValue] = useState("");
   const [aiResult, setAiResult] = useState([]);
   const [subtaskInput, setSubTaskInput] = useState();
-
+  const [listSelect, setListSelect] = useState(null);
   useEffect(() => {
     const today = new Date();
     const year = today.getFullYear();
@@ -34,18 +34,17 @@ function Today({ currUser, navCount }) {
   }, []);
 
   const fetchTasks = () => {
-    console.log("fetch task trigger")
+    console.log("fetch task trigger");
     axios
       .get("http://localhost:3001/api/")
       .then((response) => {
         console.log(response.data);
         setTask(response.data.array);
-        
+
         navCount((prevCount) => ({
           ...prevCount, // spread the existing state
-          today: response.data.array.length // update the 'today' property
+          today: response.data.array.length, // update the 'today' property
         }));
-
       })
       .catch((error) => {
         console.log(error);
@@ -101,6 +100,7 @@ function Today({ currUser, navCount }) {
       date: taskformattedDate,
       subtask: [],
       status: false,
+      list:listSelect,
     };
 
     console.log(newTask);
@@ -190,6 +190,12 @@ function Today({ currUser, navCount }) {
         fetchTasks();
       });
   }
+  function handleCheckboxChange(e) {
+     const { value } = e.target;
+     setListSelect((prevValue) => (prevValue === value ? null : value));
+     console.log("Selected value:", listSelect === value ? null : value);
+
+  }
 
   const parseTextToArray = (text) => {
     return text.split("\n").map((item) => item.replace(/^\d+\.\s*"|"$/g, ""));
@@ -210,15 +216,13 @@ function Today({ currUser, navCount }) {
     setAiResult(task);
     console.log(aiResult);
   }
-  function handleDelete(id){
+  function handleDelete(id) {
     // if(id === "") return
-    console.log("handledleete trigger")
-    axios
-      .delete(`http://localhost:3001/api/delete-todo/${id}`)
-      .then((res) => {
-        console.log(res.data, " deleted arry");
-        fetchTasks();
-      });
+    console.log("handledleete trigger");
+    axios.delete(`http://localhost:3001/api/delete-todo/${id}`).then((res) => {
+      console.log(res.data, " deleted arry");
+      fetchTasks();
+    });
   }
 
   return (
@@ -321,9 +325,11 @@ function Today({ currUser, navCount }) {
                   >
                     {task.subtask.length} Subtask
                   </p>
-                  <img onClick={()=>{
-                    handleDelete(task.taskId)
-                  }} style={{cursor:"pointer", marginLeft:"1rem"}}
+                  <img
+                    onClick={() => {
+                      handleDelete(task.taskId);
+                    }}
+                    style={{ cursor: "pointer", marginLeft: "1rem" }}
                     src="/assets/delete.png"
                     alt=""
                     width={15}
@@ -386,16 +392,25 @@ function Today({ currUser, navCount }) {
           </div>
           <div className="listSelect-div">
             <p className="list-title">Lists</p>
-            <div>
-              <p
-                style={{
-                  fontSize: "0.8rem",
-                  padding: "0.5rem",
-                  marginLeft: "1em",
-                }}
-              >
-                O Personal
-              </p>
+            <div className="TodayListDiv">
+              <div className="Todaylist">
+                <input
+                  type="checkbox"
+                  value={"personal"}
+                  checked={listSelect ==="personal"}
+                  onChange={handleCheckboxChange}
+                />
+                <p>Personal</p>
+              </div>
+              <div className="Todaylist">
+                <input
+                  type="checkbox"
+                  onChange={handleCheckboxChange}
+                  checked={listSelect === "work"}
+                  value={"work"}
+                />
+                <p>Work</p>
+              </div>
             </div>
           </div>
         </div>
