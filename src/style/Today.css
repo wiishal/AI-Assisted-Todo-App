@@ -18,9 +18,12 @@
 }
 .today-right {
   width: 40%;
-  padding: 1rem;
+  padding: 2rem;
   margin: 0.5rem;
+    background-color: rgb(248, 248, 248);
+    border-radius: 1rem;
   /* gap: 1.5rem; */
+ 
 }
 
 .styled-button {
@@ -47,6 +50,9 @@
 }
 .listSelect-div {
   /* border: 2px solid rgb(105, 105, 105); */
+  display: flex;
+  align-items: center;
+  padding: 1em 0em;
 }
 .list-title {
   color: rgb(117, 117, 117);
@@ -73,6 +79,8 @@
   width: 40%;
   padding: 2rem;
   margin: 0.5rem;
+    background-color: rgb(248, 248, 248);
+    border-radius: 1rem;
 }
 ::-webkit-scrollbar {
   width: 1px; /* Width of the entire scrollbar */

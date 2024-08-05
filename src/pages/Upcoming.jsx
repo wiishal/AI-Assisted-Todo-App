@@ -141,7 +141,7 @@ function TaskTemplate({ task }) {
         ) : (
           <p
             className="Upcoming-task-title"
-            style={{ color: "rgb(217, 217, 217);" }}
+            style={{ color: "rgb(217, 217, 217)" }} 
           >
             {task.taskDescription}
           </p>

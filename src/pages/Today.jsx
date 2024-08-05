@@ -397,7 +397,7 @@ function Today({ currUser, navCount }) {
                 <input
                   type="checkbox"
                   value={"personal"}
-                  checked={listSelect ==="personal"}
+                  checked={listSelect === "personal"}
                   onChange={handleCheckboxChange}
                 />
                 <p>Personal</p>
@@ -418,7 +418,7 @@ function Today({ currUser, navCount }) {
 
       {editTaskDiv !== null ? (
         <div className="today-edit">
-          {Task[editTaskDiv].taskId}
+          {/* {Task[editTaskDiv].taskId} */}
           <h3 className="inputDiv-title">Task</h3>
           <textarea
             style={{ width: "15rem", height: "5rem" }}
@@ -426,38 +426,27 @@ function Today({ currUser, navCount }) {
             onChange={editInputHandler}
             type="text"
           />
-          <div className="button-div">
-            <button
-              className="styled-button"
-              onClick={() => addEdittask(editTaskDiv)}
-            >
-              edit
-            </button>
-            <button className="styled-button">AI Assistance </button>
-            <button
-              className="styled-button"
-              onClick={() => seteditTaskDiv(null)}
-            >
-              Cancle
-            </button>
+          <div>
+            <button className="styled-button" onClick={()=> addEdittask(editTaskDiv)}>Save</button>
           </div>
-
           <div className="listSelect-div">
-            <p className="list-title">Lists</p>
+            <p className="list-title">Lists :</p>
             <div>
               <p
                 style={{
                   fontSize: "0.8rem",
                   padding: "0.5rem",
                   marginLeft: "1em",
+                  textTransform: "capitalize",
+                  fontWeight: "600",
                 }}
               >
-                Personal
+                {Task[editTaskDiv].list ? Task[editTaskDiv].list : "none"}
               </p>
             </div>
           </div>
           <div className="addsubTask">
-            <p>Sub Task</p>
+            <h3>Sub Task</h3>
             <input
               type="text"
               value={subtaskInput}

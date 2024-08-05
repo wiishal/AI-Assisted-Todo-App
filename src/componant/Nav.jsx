@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 function Nav({ currUser, count }) {
   const {today,upcoming} = count
-  const [lists , setLists] = useState(["person", "work"])
+  const [lists , setLists] = useState(["personal", "work"])
   return (
     <div className="Nav-div">
       <div className="menu">
