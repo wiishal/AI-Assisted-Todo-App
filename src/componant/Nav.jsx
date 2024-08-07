@@ -5,7 +5,20 @@ import { Link } from "react-router-dom";
 
 function Nav({ currUser, count }) {
   const {today,upcoming} = count
-  const [lists , setLists] = useState(["personal", "work"])
+  const [lists, setLists] = useState([
+    {
+      list: "personal",
+      style: { backgroundColor: "red" },
+    },
+    {
+      list: "work",
+      style: { backgroundColor: "blue" },
+    },
+  ]);
+  const [listStyle, setListstyle] = useState({ width: "10px",
+    height: "10px",
+    borderRadius: "5px",
+  backgroundColor:"red"})
   return (
     <div className="Nav-div">
       <div className="menu">
@@ -77,7 +90,8 @@ function Nav({ currUser, count }) {
             <li key={index}>
               <div className="section-div">
                 <div className="icon-div">
-                  <Link to={`/Lists/${item}`}>{item}</Link>
+                  <div style={{ ...listStyle, ...item.style }}></div>
+                  <Link to={`/Lists/${item.list}`}>{item.list}</Link>
                 </div>
               </div>
             </li>

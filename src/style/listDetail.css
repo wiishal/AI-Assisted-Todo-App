@@ -1,0 +1,25 @@
+.list-main{
+    padding: 1em;
+    width: 70%;
+}
+.list-title{
+    /* margin: 1rem; */
+    gap: 2rem;
+    border-bottom: 2px solid black;
+    text-transform: capitalize;
+    color: black;
+    display: flex;
+    font-size: larger;
+}
+.list-taskMainDiv{
+    overflow-x: auto;
+    height: 90%;
+    margin-top:0px ;
+}
+.list-taskDiv{
+    width: 70%;
+    margin: 1em;
+    margin-top: 0px;
+    padding: 1rem;
+    border-bottom: 1px solid rgb(242, 242, 242);
+}

@@ -430,7 +430,7 @@ function Today({ currUser, navCount }) {
             <button className="styled-button" onClick={()=> addEdittask(editTaskDiv)}>Save</button>
           </div>
           <div className="listSelect-div">
-            <p className="list-title">Lists :</p>
+            <p className="listSelect-title">Lists :</p>
             <div>
               <p
                 style={{
