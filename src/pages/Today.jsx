@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import "../style/Today.css";
 import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai";
+import AddSubTask from "../componant/AddSubTask";
+import EditTask from "../componant/EditTask"
 
 function Today({ currUser, navCount }) {
   const [Task, setTask] = useState([]);
@@ -13,7 +15,7 @@ function Today({ currUser, navCount }) {
   const [taskformattedDate, setTaskformattedDate] = useState();
   const [editInputValue, seteditInputValue] = useState("");
   const [aiResult, setAiResult] = useState([]);
-  const [subtaskInput, setSubTaskInput] = useState();
+
   const [listSelect, setListSelect] = useState(null);
   useEffect(() => {
     const today = new Date();
@@ -61,12 +63,8 @@ function Today({ currUser, navCount }) {
     setinputValue(e.target.value);
   }
 
-  function editInputHandler(e) {
-    seteditInputValue(e.target.value);
-  }
-  function subTaskInputHandler(e) {
-    setSubTaskInput(e.target.value);
-  }
+
+ 
 
   function handleDate(e) {
     const today = new Date(e.target.value);
@@ -100,7 +98,7 @@ function Today({ currUser, navCount }) {
       date: taskformattedDate,
       subtask: [],
       status: false,
-      list:listSelect,
+      list: listSelect,
     };
 
     console.log(newTask);
@@ -117,19 +115,19 @@ function Today({ currUser, navCount }) {
   }
 
   //edit task
-  function addEdittask(id) {
-    console.log(id, " id from edit");
-    axios
-      .post("http://localhost:3001/api/update", {
-        id: id,
-        editValue: editInputValue,
-      })
-      .then((res) => {
-        console.log(res);
+  // function addEdittask(id) {
+  //   console.log(id, " id from edit");
+  //   axios
+  //     .post("http://localhost:3001/api/update", {
+  //       id: id,
+  //       editValue: editInputValue,
+  //     })
+  //     .then((res) => {
+  //       console.log(res);
 
-        fetchTasks();
-      });
-  }
+  //       fetchTasks();
+  //     });
+  // }
 
   function handleEditTask(Id) {
     console.log("task selected", Id);
@@ -144,28 +142,6 @@ function Today({ currUser, navCount }) {
     }
   }
 
-  // add subtask
-  function addSubTask(id) {
-    if (subtaskInput == "") return;
-    console.log(id);
-
-    const newSubtask = {
-      text: subtaskInput,
-      status: false,
-    };
-    axios
-      .post("http://localhost:3001/api/addSubTask", {
-        id: id,
-        subtask: newSubtask,
-      })
-      .then((res) => {
-        console.log(res.data);
-        fetchTasks();
-      });
-
-    setSubTaskInput("");
-  }
-
   //check task
   function checkTask(id) {
     axios
@@ -178,23 +154,10 @@ function Today({ currUser, navCount }) {
       });
   }
 
-  //check sub task
-  function checkSubTask(id, i) {
-    axios
-      .post("http://localhost:3001/api/checkSubTask", {
-        id: id,
-        index: i,
-      })
-      .then((res) => {
-        console.log(res.data);
-        fetchTasks();
-      });
-  }
   function handleCheckboxChange(e) {
-     const { value } = e.target;
-     setListSelect((prevValue) => (prevValue === value ? null : value));
-     console.log("Selected value:", listSelect === value ? null : value);
-
+    const { value } = e.target;
+    setListSelect((prevValue) => (prevValue === value ? null : value));
+    console.log("Selected value:", listSelect === value ? null : value);
   }
 
   const parseTextToArray = (text) => {
@@ -205,9 +168,7 @@ function Today({ currUser, navCount }) {
     const apiUrl = import.meta.env.VITE_API_KEY;
     const genAI = new GoogleGenerativeAI(apiUrl);
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-
     const prompt = `create multiple todos task for this text -->${inputValue}. don't include time , status just return serially like 1."xyz" note:dont add any extra thing just return 1."xyz"`;
-
     const result = await model.generateContent(prompt);
     const response = await result.response;
     const text = response.text();
@@ -391,7 +352,7 @@ function Today({ currUser, navCount }) {
             <input type="date" onChange={handleDate} value={date} />
           </div>
           <div className="listSelect-div">
-            <p className="list-title">Lists</p>
+            <p className="listSelect-title">Lists</p>
             <div className="TodayListDiv">
               <div className="Todaylist">
                 <input
@@ -417,93 +378,15 @@ function Today({ currUser, navCount }) {
       ) : null}
 
       {editTaskDiv !== null ? (
-        <div className="today-edit">
-          {/* {Task[editTaskDiv].taskId} */}
-          <h3 className="inputDiv-title">Task</h3>
-          <textarea
-            style={{ width: "15rem", height: "5rem" }}
-            value={editInputValue}
-            onChange={editInputHandler}
-            type="text"
-          />
-          <div>
-            <button className="styled-button" onClick={()=> addEdittask(editTaskDiv)}>Save</button>
-          </div>
-          <div className="listSelect-div">
-            <p className="listSelect-title">Lists :</p>
-            <div>
-              <p
-                style={{
-                  fontSize: "0.8rem",
-                  padding: "0.5rem",
-                  marginLeft: "1em",
-                  textTransform: "capitalize",
-                  fontWeight: "600",
-                }}
-              >
-                {Task[editTaskDiv].list ? Task[editTaskDiv].list : "none"}
-              </p>
-            </div>
-          </div>
-          <div className="addsubTask">
-            <h3>Sub Task</h3>
-            <input
-              type="text"
-              value={subtaskInput}
-              onChange={subTaskInputHandler}
-              name=""
-              id=""
-            />
-            <button
-              className="styled-button"
-              onClick={() => addSubTask(Task[editTaskDiv].taskId)}
-            >
-              Add
-            </button>
-            {Task[editTaskDiv].subtask.map((task, i) => (
-              <div
-                onClick={() => checkSubTask(Task[editTaskDiv].taskId, i)}
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                  height: "fit-content",
-                  gap: "5px",
-                }}
-              >
-                {task.status === false ? (
-                  <img
-                    src="/assets/check-box-empty.png"
-                    alt=""
-                    width={14}
-                    height={14}
-                  />
-                ) : (
-                  <img
-                    src="/assets/check-box-with-check-sign.png"
-                    alt=""
-                    width={14}
-                    height={14}
-                  />
-                )}
-
-                <p
-                  style={{
-                    marigin: "2px",
-                    color: "rgb(100, 100, 100)",
-                    fontSize: "0.8em",
-                    cursor: "pointer",
-                    fontWeight: "500",
-                  }}
-                  key={i}
-                >
-                  {task.text}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      ) : null}
+        <EditTask
+          Task={Task}
+          editTaskDiv={editTaskDiv}
+          fetchTasks={fetchTasks}
+          editInputValue={editInputValue}
+          seteditInputValue={seteditInputValue}
+        />
+      ) : 
+      null}
     </div>
   );
 }
