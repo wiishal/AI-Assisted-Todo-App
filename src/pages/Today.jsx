@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import "../style/Today.css";
 import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai";
-import AddSubTask from "../componant/AddSubTask";
-import EditTask from "../componant/EditTask"
+import EditTask from "../componant/EditTask";
 
 function Today({ currUser, navCount }) {
   const [Task, setTask] = useState([]);
@@ -15,8 +14,8 @@ function Today({ currUser, navCount }) {
   const [taskformattedDate, setTaskformattedDate] = useState();
   const [editInputValue, seteditInputValue] = useState("");
   const [aiResult, setAiResult] = useState([]);
-
   const [listSelect, setListSelect] = useState(null);
+
   useEffect(() => {
     const today = new Date();
     const year = today.getFullYear();
@@ -24,7 +23,6 @@ function Today({ currUser, navCount }) {
     const day = String(today.getDate()).padStart(2, "0"); // Pads the day with '0' if necessary
     const formattedDate = `${year}-${month}-${day}`;
     setDate(formattedDate);
-
     const taskformattedDate = `${today.getDate()}-${today.getMonth() + 1}-${
       today.getFullYear() % 100
     }`;
@@ -62,9 +60,6 @@ function Today({ currUser, navCount }) {
   function inputHandler(e) {
     setinputValue(e.target.value);
   }
-
-
- 
 
   function handleDate(e) {
     const today = new Date(e.target.value);
@@ -114,21 +109,6 @@ function Today({ currUser, navCount }) {
       });
   }
 
-  //edit task
-  // function addEdittask(id) {
-  //   console.log(id, " id from edit");
-  //   axios
-  //     .post("http://localhost:3001/api/update", {
-  //       id: id,
-  //       editValue: editInputValue,
-  //     })
-  //     .then((res) => {
-  //       console.log(res);
-
-  //       fetchTasks();
-  //     });
-  // }
-
   function handleEditTask(Id) {
     console.log("task selected", Id);
     for (let i = 0; i < Task.length; i++) {
@@ -165,6 +145,7 @@ function Today({ currUser, navCount }) {
   };
   //ai call
   async function generatePrompt() {
+    
     const apiUrl = import.meta.env.VITE_API_KEY;
     const genAI = new GoogleGenerativeAI(apiUrl);
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
@@ -385,8 +366,7 @@ function Today({ currUser, navCount }) {
           editInputValue={editInputValue}
           seteditInputValue={seteditInputValue}
         />
-      ) : 
-      null}
+      ) : null}
     </div>
   );
 }

@@ -1,10 +1,13 @@
 import { useState } from "react";
 import "../style/Nav.css";
-
+import Tags from "./Tags";
 import { Link } from "react-router-dom";
 
 function Nav({ currUser, count }) {
+
   const {today,upcoming} = count
+  
+  
   const [lists, setLists] = useState([
     {
       list: "personal",
@@ -15,10 +18,18 @@ function Nav({ currUser, count }) {
       style: { backgroundColor: "blue" },
     },
   ]);
+
+
   const [listStyle, setListstyle] = useState({ width: "10px",
     height: "10px",
     borderRadius: "5px",
   backgroundColor:"red"})
+
+
+
+
+
+
   return (
     <div className="Nav-div">
       <div className="menu">
@@ -97,6 +108,9 @@ function Nav({ currUser, count }) {
             </li>
           ))}
         </ul>
+        <div className="nav-tags">
+          <Tags/>
+        </div>
       </nav>
     </div>
   );

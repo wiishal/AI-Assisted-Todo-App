@@ -14,16 +14,21 @@ function EditTask({
 
   function addEdittask(id) {
     console.log(id, " id from edit");
-    axios
-      .post("http://localhost:3001/api/update", {
-        id: id,
-        editValue: editInputValue,
-      })
-      .then((res) => {
-        console.log(res);
+    try {
+      axios
+        .post("http://localhost:3001/api/update", {
+          id: id,
+          editValue: editInputValue,
+        })
+        .then((res) => {
+          console.log(res);
 
-        fetchTasks();
-      });
+          fetchTasks();
+        });
+    } catch (error) {
+      console.log("somethings issue acured while editing task")
+    }
+    
   }
 
   return (

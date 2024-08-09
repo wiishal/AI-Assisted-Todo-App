@@ -67,7 +67,7 @@ ul li a{
 .section-div{
     display: flex;
     justify-content: space-between;
-    width: 80%;
+    width: 80%; 
 
 
 }
@@ -82,4 +82,21 @@ ul li a{
     display: flex;
     align-items: center;
     text-transform: capitalize;
+}
+.nav-tags{
+
+}
+.nav-tagitem{
+    padding: 0.5em;
+}
+.nav-tagTitle{
+    display: flex;
+    /* justify-content: space-between; */
+    /* padding-right: 1em; */
+    padding-left: 0%;
+}
+.tag-input{
+    border: 1px solid black;
+    border-color: rgb(176, 174, 174);
+    border-radius: 5px;
 }

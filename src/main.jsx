@@ -7,11 +7,12 @@ import LoginNew from "./auth/LoginNew.jsx";
 
 const Main = () => {
 
-   const [isLogin, setIsLogin] = useState(false);
+   const [isLogin, setIsLogin] = useState(true);
    const [currusername, setcurrUsername] = useState();
 
 
   useEffect(()=>{
+    console.log("checking")
     
       const token = localStorage.getItem("authToken");
       if (token) {
@@ -29,9 +30,6 @@ const Main = () => {
       }
     
   },[])
-
- 
- 
 
   const handleLogin = (status, user) => {
     setIsLogin(status);
