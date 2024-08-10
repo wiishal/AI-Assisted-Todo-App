@@ -84,12 +84,12 @@ function Nav({ currUser, count }) {
           <li>
             <div className="icon-div">
               <img
-                src="/assets/sticky-note.png"
+                src="/assets/dollar.png"
                 alt=""
                 width={15}
                 height={15}
               />
-              <Link to="/StickyWall">Sticky Wall</Link>
+              <Link to="/Expenses">Expenses</Link>
             </div>
           </li>
         </ul>
@@ -109,7 +109,7 @@ function Nav({ currUser, count }) {
           ))}
         </ul>
         <div className="nav-tags">
-          <Tags/>
+          <Tags />
         </div>
       </nav>
     </div>

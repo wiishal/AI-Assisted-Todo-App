@@ -31,7 +31,7 @@ function Tags(){
             ))}
           </ul>
           {istagInputDiv != false ? (
-            <div className="nav-tagTitle">
+            <div className="nav-tagInputDiv">
               <input
                 value={tagInputValue}
                 onChange={() => tagInputHandler}
