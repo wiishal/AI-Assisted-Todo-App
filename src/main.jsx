@@ -7,7 +7,7 @@ import LoginNew from "./auth/LoginNew.jsx";
 
 const Main = () => {
 
-   const [isLogin, setIsLogin] = useState(true);
+   const [isLogin, setIsLogin] = useState(false);
    const [currusername, setcurrUsername] = useState();
 
 
@@ -21,7 +21,7 @@ const Main = () => {
             token: token,
           })
           .then(function (response) {
-            console.log(response.data.msg);
+            console.log(response.data.msg," from main");
             handleLogin(true, response.data.user);
           })
           .catch(function (error) {

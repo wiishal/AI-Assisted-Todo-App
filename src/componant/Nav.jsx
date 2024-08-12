@@ -7,7 +7,7 @@ function Nav({ currUser, count }) {
 
   const {today,upcoming} = count
   
-  
+
   const [lists, setLists] = useState([
     {
       list: "personal",
@@ -109,7 +109,7 @@ function Nav({ currUser, count }) {
           ))}
         </ul>
         <div className="nav-tags">
-          <Tags />
+          <Tags Tags={count.Tags} />
         </div>
       </nav>
     </div>

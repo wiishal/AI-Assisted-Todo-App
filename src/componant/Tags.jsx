@@ -1,55 +1,73 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-function Tags(){
-    const [tags, setTags] = useState(["tags1", "tag2"]);
-    const [istagInputDiv, setIstagInputDiv]=useState(false)
-    const [tagInputValue , setTagInputValue] = useState()
-    function displayTagInputDiv(){
-        setIstagInputDiv(prev => !prev)
+function Tags({ Tags = [] }) {
+  const [tags, setTags] = useState([]);
+
+  useEffect(() => {
+    setTags(Tags);
+  }, [Tags]);
+
+  const [isTagInputDiv, setIsTagInputDiv] = useState(false);
+  const [tagInputValue, setTagInputValue] = useState("");
+
+  function displayTagInputDiv() {
+    setIsTagInputDiv((prev) => !prev);
+  }
+
+  function tagInputHandler(e) {
+    setTagInputValue(e.target.value);
+  }
+
+  function addTag() {
+    if (tagInputValue.trim() !== "") {
+      setTags((prevTags) => [...prevTags, tagInputValue.trim()]);
+      setTagInputValue("");
+      setIsTagInputDiv(false);
     }
-    function tagInputHandler(e){
-        setTagInputValue(e.target.value);
-    }
-    return (
-      <div>
-        <div className="nav-tagTitle">
-          <p>Tags</p>
-          <img
-            onClick={displayTagInputDiv}
-            src="/assets/plus.png"
-            alt=""
-            width={15}
-            height={15}
-          />
-        </div>
-        <div className="nav-tagitemDiv">
-          <ul key={"tag"}>
-            {tags.map((tag, i) => (
-              <li className="nav-tagitem" key={i}>
-                {tag}
-              </li>
-            ))}
-          </ul>
-          {istagInputDiv != false ? (
-            <div className="nav-tagInputDiv">
-              <input
-                value={tagInputValue}
-                onChange={() => tagInputHandler}
-                className="tag-input"
-                type="text"
-              />
-              <img
-                onClick={displayTagInputDiv}
-                src="/assets/plus.png"
-                alt=""
-                width={15}
-                height={15}
-              />
-            </div>
-          ) : null}
-        </div>
+  }
+
+ 
+
+  return (
+    <div>
+      <div className="nav-tagTitle">
+        <p>Tags</p>
+        <img
+          onClick={displayTagInputDiv}
+          src="/assets/plus.png"
+          alt=""
+          width={15}
+          height={15}
+        />
       </div>
-    );
+      <div className="nav-tagitemDiv">
+        <ul>
+          {tags.map((tag, i) => (
+            <li className="nav-tagitem" key={i}>
+              {tag} 
+            </li>
+          ))}
+        </ul>
+        {isTagInputDiv && (
+          <div className="nav-tagInputDiv">
+            <input
+              value={tagInputValue}
+              onChange={tagInputHandler}
+              className="tag-input"
+              type="text"
+            />
+            <img
+              onClick={addTag}
+              src="/assets/plus.png"
+              alt=""
+              width={15}
+              height={15}
+            />
+          </div>
+        )}
+      </div>
+    </div>
+  );
 }
 
-export default Tags
+export default Tags;
