@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 function Tags({ Tags = [] }) {
   const [tags, setTags] = useState([]);
@@ -22,10 +23,19 @@ function Tags({ Tags = [] }) {
     if (tagInputValue.trim() !== "") {
       setTags((prevTags) => [...prevTags, tagInputValue.trim()]);
       setTagInputValue("");
+      saveTag(tagInputValue)
       setIsTagInputDiv(false);
     }
   }
-
+  function saveTag(tagInputValue) {
+    axios
+      .post("http://localhost:3001/api/interface/addTag", {
+        tag: tagInputValue,
+      })
+      .then((res) => {
+        console.log(res.data);
+      });
+  }
  
 
   return (
