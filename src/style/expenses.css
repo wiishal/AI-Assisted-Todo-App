@@ -1,0 +1,19 @@
+.expenses-main{
+    width: 70%;
+    padding: 1em;
+}
+.expenses-mainTitle{
+    border-bottom: 1px solid black;
+    width: fit-content;
+}
+.expenses-cardDiv{
+    display: flex;
+    margin: 1rem;
+}
+.expenses-card{
+    border: 1px solid black;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

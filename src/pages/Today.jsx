@@ -19,8 +19,8 @@ function Today({ currUser, navCount }) {
   useEffect(() => {
     const today = new Date();
     const year = today.getFullYear();
-    const month = String(today.getMonth() + 1).padStart(2, "0"); 
-    const day = String(today.getDate()).padStart(2, "0"); 
+    const month = String(today.getMonth() + 1).padStart(2, "0");
+    const day = String(today.getDate()).padStart(2, "0");
     const formattedDate = `${year}-${month}-${day}`;
     setDate(formattedDate);
     const taskformattedDate = `${today.getDate()}-${today.getMonth() + 1}-${
@@ -145,7 +145,6 @@ function Today({ currUser, navCount }) {
   };
   //ai call
   async function generatePrompt() {
-    
     const apiUrl = import.meta.env.VITE_API_KEY;
     const genAI = new GoogleGenerativeAI(apiUrl);
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
