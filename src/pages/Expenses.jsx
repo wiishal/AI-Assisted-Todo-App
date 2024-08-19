@@ -1,18 +1,30 @@
 import "../style/expenses.css";
 import ExpensesCard from "../componant/ExpensesCard";
-import { useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 function Expenses() {
+  useEffect(() => {
+    axios
+      .get("http://localhost:3001/api/expenses")
+      .then((res) =>
+        
+     {   console.log(res.data)
+        setCards(res.data.expenses);}
 
-  const [card,setCard]=useState(1)
+    );
+  }, []);
+  const [cards, setCards] = useState([]);
 
   return (
     <div className="expenses-main">
       <h1 className="expenses-mainTitle">Expenses</h1>
 
-
       <div className="expenses-cardDiv">
-          car
+        {cards.map((item)=>(
+          <ExpensesCard item={item}/>
+        ))}
+      
       </div>
     </div>
   );
