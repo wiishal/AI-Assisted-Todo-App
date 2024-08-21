@@ -7,27 +7,28 @@ function ExpensesCard({ item }) {
   const [spendInput, setSpendInput] = useState();
   const [totolExpense, setTotalExpense] = useState();
 
-  async function getAIresult(){
-     let arrofexpenses = promptForAI();
-     console.log(arrofexpenses)
-     const genAI = new GoogleGenerativeAI(apiUrl);
-     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-     const prompt = `${arrofexpenses}. calculate total spending give responce in json  `;
-     const result = await model.generateContent(prompt);
-     const response = await result.response;
-     const text = response.text();
-     console.log(text)
+  async function getAIresult() {
+    let arrofexpenses = promptForAI();
+    console.log(arrofexpenses);
+    const genAI = new GoogleGenerativeAI(apiUrl);
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    const prompt = `${arrofexpenses}. calculate total spending give responce in json  `;
+    const result = await model.generateContent(prompt);
+    const response = await result.response;
+    const text = response.text();
+    console.log(text);
     let expence = text.match(/"total_spending":\s*(\d+)/)[1];
-     console.log(expence);
-     if(expence){
-        setTotalExpense(expence)
-     }
+    console.log(expence);
+    if (expence) {
+      setTotalExpense(expence);
+    }
   }
   function promptForAI() {
-    let prompt = spends.join(', ',);
-   return prompt
+    let prompt = spends.join(", ");
+    return prompt;
   }
   function addSpends() {
+  
     setSpends([...spends, spendInput]);
   }
 
