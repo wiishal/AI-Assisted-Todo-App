@@ -10,11 +10,12 @@ function Expenses() {
   function fetchSpends(){
      axios.get("http://localhost:3001/api/expenses").then((res) => {
        console.log(res.data);
+       
        setCards(res.data.expenses);
      });
-  }
+  }   
   const [cards, setCards] = useState([]);
-   const [isAddSpendCard, setIsAddSpendCard] = useState(true);
+  
   
   return (
     <div className="expenses-main">
@@ -22,8 +23,8 @@ function Expenses() {
 
       <AddSpendCard fetchSpends={fetchSpends}></AddSpendCard>
       <div className="expenses-cardDiv">
-        {cards.map((item) => (
-          <ExpensesCard item={item} />
+        {cards.map((item, i) => (
+          <ExpensesCard item={item} id={item.id} />
         ))}
       </div>
     </div>
@@ -31,3 +32,4 @@ function Expenses() {
 }
 
 export default Expenses;
+  

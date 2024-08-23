@@ -1,19 +1,40 @@
-.expenses-main{
-    width: 70%;
-    padding: 1em;
+.expenses-main {
+  width: 70%;
+  padding: 1em;
 }
-.expenses-mainTitle{
+.expenses-mainTitle {
+  border-bottom: 1px solid black;
+  width: fit-content;
+}
+.expenses-cardDiv {
+  display: flex;
+  margin: 1rem;
+}
+.expenses-card {
+  border: 1px solid black;
+  border-radius: 1rem;
+  /* min-height: 100px; */
+  height: fit-content;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  padding: 1em;
+  margin: 1em  ;
+}
+.expensesCard-titleDiv {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1em;
+}
+.expensesCard-title{
+    font-size: medium;
+}
+.expenses-cardContent{
+    /* background-color: rgb(230, 230, 230);    */
+    font-weight: 400;
+    padding-bottom: 0.5em;
     border-bottom: 1px solid black;
-    width: fit-content;
-}
-.expenses-cardDiv{
-    display: flex;
-    margin: 1rem;
-}
-.expenses-card{
-    border: 1px solid black;
-    min-height: 100px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
 }

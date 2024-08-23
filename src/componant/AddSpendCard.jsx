@@ -4,7 +4,9 @@ function AddSpendCard({ fetchSpends }) {
   function AddCard() {
     axios
       .post("http://localhost:3001/api/expenses/addExpenses", {
-        date: "18-8-24",
+        id: Math.random(),
+        date: "17-8-24",
+        expenses_user: [""],
       })
       .then((res) => {
         console.log(res.data);

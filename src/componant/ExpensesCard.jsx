@@ -2,10 +2,11 @@ import { useState } from "react";
 import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai";
 const apiUrl = import.meta.env.VITE_API_KEY;
 
-function ExpensesCard({ item }) {
+function ExpensesCard({ item, id }) {
   const [spends, setSpends] = useState(item.expenses);
   const [spendInput, setSpendInput] = useState();
   const [totolExpense, setTotalExpense] = useState();
+  const [isInputField, setIsInputField] = useState(false);
 
   async function getAIresult() {
     let arrofexpenses = promptForAI();
@@ -27,8 +28,10 @@ function ExpensesCard({ item }) {
     let prompt = spends.join(", ");
     return prompt;
   }
+  function displayInputField(){
+    setIsInputField(prev => !prev)
+  }
   function addSpends() {
-  
     setSpends([...spends, spendInput]);
   }
 
@@ -36,25 +39,39 @@ function ExpensesCard({ item }) {
     setSpendInput(e.target.value);
   }
   return (
-    <div className="expenses-card">
-      <h4>card</h4>
-      <h4>{totolExpense}</h4>
+    <div key={id} className="expenses-card">
+      <div className="expensesCard-titleDiv">
+        <h4 className="expensesCard-title">{item.date}</h4>
+        <img
+          onClick={displayInputField}
+          src="/assets/plus.png"
+          alt=""
+          width={15}
+          height={15}
+        />
+        <button className="styled-button" onClick={getAIresult}>
+          Calculate
+        </button>
+      </div>
+
       <div className="expenses-cardContent">
         {spends.map((item) => (
           <p>{item}</p>
         ))}
       </div>
-      <div className="expenses-cardInputs">
-        <input
-          value={spendInput}
-          onChange={handleSpendInput}
-          type="text"
-          name=""
-          id=""
-        />
-        <button onClick={() => addSpends()}>add</button>
-        <button onClick={getAIresult}>calculateExpenses</button>
-      </div>
+      {isInputField == true ? (
+        <div className="expenses-cardInputs">
+          <input
+            value={spendInput}
+            onChange={handleSpendInput}
+            type="text"
+            name=""
+            id=""
+          />
+          <button onClick={() => addSpends()}>add</button>
+        </div>
+      ) : null}
+      <div className="expenses-totalExpenseDiv">{totolExpense}</div>
     </div>
   );
 }
