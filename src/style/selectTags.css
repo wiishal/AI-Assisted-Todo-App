@@ -1,0 +1,24 @@
+.tag-itemDiv{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0.5em;
+    align-content: center;
+    font-size: small;
+    font-weight: 600;
+    
+    width:fit-content ;
+    height: fit-content;
+    padding: 0.5em;
+    border-radius: 5px;
+}
+.tag-item{
+background-color: rgb(226, 226, 226);
+/* border: 1px solid black; */
+border-radius: 5px;
+padding: 0.5em;
+   margin: 0.5em;
+}
+.tag-item:hover{
+    cursor: pointer;
+    background-color: rgb(124, 124, 124);
+}

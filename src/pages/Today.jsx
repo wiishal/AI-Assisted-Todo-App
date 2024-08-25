@@ -3,6 +3,8 @@ import axios from "axios";
 import "../style/Today.css";
 import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai";
 import EditTask from "../componant/EditTask";
+import SelectTags from "../componant/SelectTags";
+import Tags from "../componant/Tags";
 
 function Today({ currUser, navCount }) {
   const [Task, setTask] = useState([]);
@@ -15,6 +17,7 @@ function Today({ currUser, navCount }) {
   const [editInputValue, seteditInputValue] = useState("");
   const [aiResult, setAiResult] = useState([]);
   const [listSelect, setListSelect] = useState(null);
+  const [tagStack,setTagStack]  =useState([])
 
   useEffect(() => {
     const today = new Date();
@@ -30,6 +33,7 @@ function Today({ currUser, navCount }) {
   }, []);
 
   useEffect(() => {
+
     fetchTasks();
   }, []);
 
@@ -94,6 +98,7 @@ function Today({ currUser, navCount }) {
       subtask: [],
       status: false,
       list: listSelect,
+      Tags:tagStack 
     };
 
     console.log(newTask);
@@ -190,7 +195,6 @@ function Today({ currUser, navCount }) {
                 color: "black",
                 padding: "0.5rem",
                 margin: "3px",
-
                 display: "flex",
                 justifyContent: "space-between",
               }}
@@ -353,6 +357,11 @@ function Today({ currUser, navCount }) {
                 <p>Work</p>
               </div>
             </div>
+          </div>
+          <div className="TodayTags">
+            <p className="listSelect-title">Tags</p>
+            <SelectTags tagStack={tagStack} setTagStack={setTagStack} />
+            <div></div>
           </div>
         </div>
       ) : null}

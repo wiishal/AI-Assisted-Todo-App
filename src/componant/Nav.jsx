@@ -3,6 +3,7 @@ import "../style/Nav.css";
 import Tags from "./Tags";
 import { Link } from "react-router-dom";
 
+
 function Nav({ currUser, count }) {
 
   const {today,upcoming} = count
@@ -35,7 +36,7 @@ function Nav({ currUser, count }) {
       <div className="menu">
         <h4>{currUser}</h4>
         <span>
-          <img src="/assets/menu.png" alt="" width={20} height={20} />
+          <img src="assets/menu.png" alt="" width={20} height={20} />
         </span>
       </div>
       <div className="search-bar">
@@ -83,12 +84,7 @@ function Nav({ currUser, count }) {
           </li>
           <li>
             <div className="icon-div">
-              <img
-                src="/assets/dollar.png"
-                alt=""
-                width={15}
-                height={15}
-              />
+              <img src="/assets/dollar.png" alt="" width={15} height={15} />
               <Link to="/Expenses">Expenses</Link>
             </div>
           </li>
@@ -114,6 +110,6 @@ function Nav({ currUser, count }) {
       </nav>
     </div>
   );
-}
+} 
 
 export default Nav;

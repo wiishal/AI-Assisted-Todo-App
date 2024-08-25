@@ -36,5 +36,8 @@
     /* background-color: rgb(230, 230, 230);    */
     font-weight: 400;
     padding-bottom: 0.5em;
-    border-bottom: 1px solid black;
+
+}
+.expenses-totalExpenseDiv{
+ background-color: rgb(223, 223, 223);
 }

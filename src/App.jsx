@@ -8,7 +8,7 @@ import Expenses from "./pages/Expenses.jsx";
 import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes} from 'react-router-dom'
 import ListDetails from "./componant/ListDetails.jsx";
-
+import TagDetails from "./componant/TagDetails.jsx";
 
 function App({ user }) {
   let Component;
@@ -37,13 +37,14 @@ useEffect(() => {
   return (
     <BrowserRouter>
       <div className="main">
-        <Nav currUser={user} count={count}  />
+        <Nav currUser={user} count={count} />
         <Routes>
           <Route path="/" element={<Today navCount={setCount} />} />
           <Route path="/Upcoming" element={<Upcoming navCount={setCount} />} />
           <Route path="/Calender" element={<Calender />} />
           <Route path="/Expenses" element={<Expenses />} />
           <Route path="/Lists/:item" element={<ListDetails />} />
+          <Route path="/Tags/:tag" element={<TagDetails />} />
         </Routes>
       </div>
     </BrowserRouter>

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
+import "../style/listDetail.css";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 function Tags({ Tags = [] }) {
   const [tags, setTags] = useState([]);
@@ -19,24 +21,36 @@ function Tags({ Tags = [] }) {
     setTagInputValue(e.target.value);
   }
 
-  function addTag() {
-    if (tagInputValue.trim() !== "") {
-      setTags((prevTags) => [...prevTags, tagInputValue.trim()]);
-      setTagInputValue("");
-      saveTag(tagInputValue)
-      setIsTagInputDiv(false);
-    }
-  }
-  function saveTag(tagInputValue) {
-    axios
-      .post("http://localhost:3001/api/interface/addTag", {
-        tag: tagInputValue,
-      })
-      .then((res) => {
-        console.log(res.data);
-      });
-  }
- 
+ function addTag() {
+   const trimmedValue = tagInputValue.trim();
+
+   console.log(trimmedValue);
+
+   if (trimmedValue !== "") {
+     setTags((prevTags) => [...prevTags, trimmedValue]);
+     setTagInputValue(""); 
+     saveTag(trimmedValue); 
+     setIsTagInputDiv(false); 
+   }
+ }
+ function saveTag(tagInputValue) {
+   axios
+     .post(
+       "http://localhost:3001/api/interface/addTag",
+       { tag: tagInputValue },
+       {
+         headers: {
+           "Content-Type": "application/json",
+         },
+       }
+     )
+     .then((res) => {
+       console.log(res.data);
+     })
+     .catch((err) => {
+       console.error(err);
+     });
+ }
 
   return (
     <div>
@@ -51,13 +65,13 @@ function Tags({ Tags = [] }) {
         />
       </div>
       <div className="nav-tagitemDiv">
-        <ul>
+      
           {tags.map((tag, i) => (
-            <li className="nav-tagitem" key={i}>
-              {tag} 
-            </li>
+            <div className="nav-tagitem" key={i}>
+              <Link to={`/Tags/${tag}`}>{tag}</Link>
+            </div>
           ))}
-        </ul>
+
         {isTagInputDiv && (
           <div className="nav-tagInputDiv">
             <input

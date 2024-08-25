@@ -87,6 +87,10 @@ ul li a{
 .nav-tagitem{
     padding: 0.5em;
 }
+a{
+ text-decoration: none;
+ color: black;
+}
 .nav-tagTitle{
     display: flex;
     align-items: center;

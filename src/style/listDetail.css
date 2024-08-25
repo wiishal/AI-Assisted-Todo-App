@@ -23,3 +23,17 @@
     padding: 1rem;
     border-bottom: 1px solid rgb(242, 242, 242);
 }
+.nav-tagitem{
+    
+    background-color: rgb(224, 223, 223);
+    /* border: 1px solid rgb(0, 0, 0); */
+    border-radius: 5px;
+
+}
+.nav-tagitemDiv{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5em;
+    margin: 1em;
+
+}
