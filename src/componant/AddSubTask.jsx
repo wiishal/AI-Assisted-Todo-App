@@ -55,7 +55,7 @@ function AddSubTask({  Task, editTaskDiv,fetchTasks }) {
   return (
     <div className="addsubTask">
       <h3>Sub Task</h3>
-      <input
+      <input 
         type="text"
         value={subtaskInput}
         onChange={subTaskInputHandler}

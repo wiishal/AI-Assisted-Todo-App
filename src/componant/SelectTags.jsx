@@ -34,7 +34,7 @@ function handleTagClick(tag) {
         <p
           onClick={() => handleTagClick(tag)}
           key={index}
-          className="tag-item"
+          className="tag-item"  
         >
           {tag}
         </p>

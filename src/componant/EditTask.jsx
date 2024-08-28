@@ -65,6 +65,17 @@ function EditTask({
           </p>
         </div>
       </div>
+      <div className="listSelect-div">
+        <p className="listSelect-title">Tags :</p>
+        <div>
+            {Task[editTaskDiv].Tags.map((tag)=>(
+              <p>
+                {tag}
+              </p>
+            ))}
+        
+        </div>
+      </div>
       <AddSubTask
         Task={Task}
         editTaskDiv={editTaskDiv}

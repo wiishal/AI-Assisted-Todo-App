@@ -13,7 +13,7 @@ function ExpensesCard({ item, id }) {
     console.log(arrofexpenses);
     const genAI = new GoogleGenerativeAI(apiUrl);
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-    const prompt = `${arrofexpenses}. calculate total spending give responce in json  `;
+    const prompt = `${arrofexpenses}. calculate total spending give responce in json   `;
     const result = await model.generateContent(prompt);
     const response = await result.response;
     const text = response.text();
