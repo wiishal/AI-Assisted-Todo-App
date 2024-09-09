@@ -98,7 +98,7 @@ function Today({ currUser, navCount }) {
       subtask: [],
       status: false,
       list: listSelect,
-      Tags:tagStack 
+      tags:tagStack 
     };
 
     console.log(newTask);

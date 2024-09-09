@@ -36,26 +36,23 @@ function Copyright(props) {
 
 const defaultTheme = createTheme();
 
-
-export default function LoginNew({ variable, handle }) {
-
-    
-function submit(email, password) {
-  console.log("in submit", email);
-  axios
-    .post("http://localhost:3001/auth/login", {
-      username: email,
-      password: password,
-    })
-    .then(function (response) {
-      console.log(response.data.token);
-      localStorage.setItem("authToken", response.data.token);
-      handle(true, response.data.user);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-}
+export default function LoginNew({ handle }) {
+  function submit(email, password) {
+    console.log("in submit", email);
+    axios
+      .post("http://localhost:3001/auth/login", {
+        username: email,
+        password: password,
+      })
+      .then(function (response) {
+        console.log(response.data.token);
+        localStorage.setItem("authToken", response.data.token);
+        handle(true, response.data.user);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();

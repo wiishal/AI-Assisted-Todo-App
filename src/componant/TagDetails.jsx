@@ -12,8 +12,9 @@ function TagDetails() {
   }, [tag]);
 
   function fetch() {
+    console.log(tag)
     axios
-      .get(`http://localhost:3001/api/${tag}`)
+      .get(`http://localhost:3001/api/tag/${tag}`)
       .then((response) => {
         console.log(response.data);
         setTask(response.data.array || []);
