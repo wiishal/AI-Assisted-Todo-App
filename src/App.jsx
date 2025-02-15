@@ -11,33 +11,16 @@ import ListDetails from "./componant/ListDetails.jsx";
 import TagDetails from "./componant/TagDetails.jsx";
 
 function App({ user }) {
-  let Component;
   const [count, setCount] = useState({
     today: 0,
     upcoming: 0,
     Tags:[],
-   
   });
-useEffect(() => {
-  axios
-    .get("http://localhost:3001/api/interface")
-    .then((response) => {
-      console.log(response.data.interface);
-      
-      const newTags = response.data.interface[0].tags;
-      let updatedTags = [...count.Tags, ...newTags];
-      let updateCount = { ...count, Tags: updatedTags };
-      setCount(updateCount);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-}, []);
-
+  
   return (
     <BrowserRouter>
       <div className="main">
-        <Nav currUser={user} count={count} />
+        <Nav currUser={user}  />
         <Routes>
           <Route path="/" element={<Today navCount={setCount} />} />
           <Route path="/Upcoming" element={<Upcoming navCount={setCount} />} />
