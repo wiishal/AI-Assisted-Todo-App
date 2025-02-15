@@ -20,5 +20,6 @@ padding: 0.5em;
 }
 .tag-item:hover{
     cursor: pointer;
-    background-color: rgb(124, 124, 124);
 }
+
+

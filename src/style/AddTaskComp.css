@@ -1,0 +1,32 @@
+.addtask-main{
+    /* border: 2px solid red; */
+    width: 40%;
+}
+.addtask-title,.addtask-des,.addtask-date,.addtask-list{
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+.addtask-titleInput{
+    padding: 0.5rem;
+}
+.addtask-desInput{
+    width: 15rem;
+    padding: 0.5rem;
+}
+.addtask-dateInput{
+    width: fit-content;
+    border-color:transparent;
+    font-weight: 500;
+}
+.addtask-listoption{
+    display: flex;
+    gap: 1rem;
+}
+.addtask-listItem{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-weight: 500;
+    font-size: 0.9rem;
+}

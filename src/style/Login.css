@@ -1,0 +1,42 @@
+
+.login-main{
+    display: flex;
+    flex: row;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100wh;
+    border: 2px solid black;
+}
+.login-div{
+ height: 50%;
+ width: 50%;
+ /* border: 2px solid blue */
+}
+.userInput-div,.passwordInput-div{
+    display: flex;
+    flex-direction: column;
+    margin: 1em;
+    font-weight: 600;
+    gap: 0.5em;
+}
+.password-input,.username-input{
+    width: 30%;
+    height: 2rem;
+    border-radius: 0.5rem;
+}
+.loginBtn-div{
+    display: flex;
+    width: 50%;
+    margin: 1rem;
+    gap: 2rem;
+    align-items: center;
+}
+.loginBtn{
+    background-color: skyblue;
+    width: 5rem;
+    height: 2rem;   
+    /* border-color: rgb(91, 91, 226); */
+    border-radius: 0.5rem; 
+    font-weight: 500;
+}
