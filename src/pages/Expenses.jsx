@@ -8,7 +8,7 @@ function Expenses() {
    fetchSpends();
   }, []);
   function fetchSpends(){
-     axios.get("http://localhost:3001/api/expenses").then((res) => {
+     axios.get("http://localhost:3000/api/expenses").then((res) => {
        console.log(res.data);
        
        setCards(res.data.expenses);

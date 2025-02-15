@@ -18,7 +18,7 @@ function Upcoming({ navCount }) {
 
   const fetchTask = () => {
     axios
-      .get("http://localhost:3001/api/")
+      .get("http://localhost:3000/api/")
       .then((response) => {
         console.log(response.data.array);
         const grouped = groupTasksByDate(response.data.array);
