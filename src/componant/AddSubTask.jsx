@@ -10,7 +10,7 @@ function AddSubTask({  Task, editTaskDiv,fetchTasks }) {
 
   function checkSubTask(id, i) {
     axios
-      .post("http://localhost:3001/api/checkSubTask", {
+      .post("http://localhost:3000/api/toggleSubtask", {
         id: id,
         index: i,
       })
@@ -22,7 +22,7 @@ function AddSubTask({  Task, editTaskDiv,fetchTasks }) {
   function deleteSubTask(subTask,subTaskindex){
     console.log(subTaskindex, " from subtask", subTask);
      axios
-       .post("http://localhost:3001/api/deleteSubTask", {
+       .post("http://localhost:3000/api/deleteSubTask", {
          id: subTask,
          index:subTaskindex
        })

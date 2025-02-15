@@ -13,7 +13,7 @@ function ListDetails() {
 
   function fetch() {
     axios
-      .get(`http://localhost:3001/api/${item}`)
+      .get(`http://localhost:3000/api/${item}`)
       .then((response) => {
         console.log(response.data);
         setTask(response.data.array || []);

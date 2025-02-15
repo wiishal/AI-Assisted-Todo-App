@@ -1,15 +1,18 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import "../style/Nav.css";
 import Tags from "./Tags";
 import { Link } from "react-router-dom";
+import { getUserTaskStr } from "../services/userStrService";
 
 
-function Nav({ currUser, count }) {
-
-  const {today,upcoming} = count
-  
-
-  const [lists, setLists] = useState([
+function Nav({ currUser  }) {
+  const { today, upcoming } = useState(0);
+const [userStr, setUserStr] = useState({
+  list: [],
+  tags: [],
+});
+  const [lists, setLists] = useState(
+    [
     {
       list: "personal",
       style: { backgroundColor: "red" },
@@ -19,18 +22,27 @@ function Nav({ currUser, count }) {
       style: { backgroundColor: "blue" },
     },
   ]);
-
-
-  const [listStyle, setListstyle] = useState({ width: "10px",
+  const [listStyle, setListstyle] = useState({
+    width: "10px",
     height: "10px",
     borderRadius: "5px",
-  backgroundColor:"red"})
-
-
-
-
-
-
+    backgroundColor: "red",
+  });
+  useEffect(() => {
+    
+    async function getStr() {
+      const Str = await getUserTaskStr()
+      if(userStr){
+        setUserStr(Str.userStr);
+        return
+      }
+      setUserStr({
+        list:[],
+        tags:[]
+      })
+    }
+    getStr()
+  }, []);
   return (
     <div className="Nav-div">
       <div className="menu">
@@ -105,7 +117,7 @@ function Nav({ currUser, count }) {
           ))}
         </ul>
         <div className="nav-tags">
-          <Tags Tags={count.Tags} />
+          <Tags Tags={userStr.tags} />
         </div>
       </nav>
     </div>
