@@ -51,7 +51,7 @@ export async function getTask(id){
 
 export async function addTask(task){
    const token = localStorage.getItem("token");
-   console.log("from addTask : ", task);
+  
    if (!token) {
      return false;
    }

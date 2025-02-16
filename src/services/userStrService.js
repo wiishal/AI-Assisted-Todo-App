@@ -48,3 +48,55 @@ export async function addtag(tag) {
          return false; 
       }
 }
+
+export async function getTagTask(tag) {
+  console.log("tag for req : ",tag)
+  const token = localStorage.getItem("token");
+  if (!token) {
+    return false;
+  }
+  try {
+    const res = await axios.get(
+      `${url}/api/v1/userStr/tag/${tag}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    if (res.status !== 200) {
+      return false;
+    }
+    return res.data;
+  } catch (error) {
+    console.error("Error getting tagged tasks:", error.response?.data || error.message);
+    return false;
+  }
+}
+
+export async function getListTask(list) {
+  console.log("list for req : ", list);
+  const token = localStorage.getItem("token");
+  if (!token) {
+    return false;
+  }
+  try {
+    const res = await axios.get(`${url}/api/v1/userStr/list/${list}`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (res.status !== 200) {
+      return false;
+    }
+    return res.data;
+  } catch (error) {
+    console.error(
+      "Error getting tagged tasks:",
+      error.response?.data || error.message
+    );
+    return false;
+  }
+}
