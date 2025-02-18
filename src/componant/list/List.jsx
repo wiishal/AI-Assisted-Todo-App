@@ -1,6 +1,7 @@
 import { useState } from "react";
+import React from "react";
 
-export default function List({ listSelect, setListSelect }) {
+ function List({ listSelect, setListSelect }) {
   const [listState, setListState] = useState({ personal: false, work: false });
 
   function addtoList(item) {
@@ -54,3 +55,5 @@ export default function List({ listSelect, setListSelect }) {
     </div>
   );
 }
+
+export default React.memo(List)

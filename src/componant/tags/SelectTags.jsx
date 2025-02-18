@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "../style/selectTags.css"
+import React from "react";
 import { getUserTaskStr } from "../../services/userStrService";
 
 function SelectTags({tagStack, setTagStack }) {
@@ -38,6 +38,7 @@ function handleTagClick(tag) {
   if (isLoading) return <div className="loading-div">Loadiing...</div>
     return (
       <div className="tag-itemDiv">
+        
         {tags.map((tag, index) => (
           <p
             onClick={() => handleTagClick(tag)}
@@ -51,4 +52,4 @@ function handleTagClick(tag) {
     );
 
 }
-export default SelectTags;
+export default React.memo(SelectTags);

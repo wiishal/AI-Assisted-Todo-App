@@ -1,6 +1,7 @@
 import { useState,useEffect } from "react";
 import "../style/Nav.css";
-import Tags from "./Tags";
+import "../style/SelectTags.css";
+import Tags from "./tags/Tags";
 import { Link } from "react-router-dom";
 import { getUserTaskStr } from "../services/userStrService";
 
@@ -51,9 +52,9 @@ const [userStr, setUserStr] = useState({
           <img src="assets/menu.png" alt="" width={20} height={20} />
         </span>
       </div>
-      <div className="search-bar">
+      {/* <div className="search-bar">
         <input className="inputBox-search" placeholder="Search" type="text" />
-      </div>
+      </div> */}
       <nav>
         <span>Tasks</span>
         <ul>
@@ -68,7 +69,6 @@ const [userStr, setUserStr] = useState({
                 />
                 <Link to="/">Today</Link>
               </div>
-              <p className="count">{today}</p>
             </div>
           </li>
           <li>
@@ -82,7 +82,6 @@ const [userStr, setUserStr] = useState({
                 />
                 <Link to="/Upcoming">Upcoming</Link>
               </div>
-              <p className="count">{upcoming}</p>
             </div>
           </li>
           <li>
@@ -91,7 +90,6 @@ const [userStr, setUserStr] = useState({
                 <img src="/assets/calendar.png" alt="" width={15} height={15} />
                 <Link to="/Calender">Calender</Link>
               </div>
-              <p className="count">0</p>
             </div>
           </li>
           <li>

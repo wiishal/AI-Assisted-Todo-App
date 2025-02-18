@@ -1,42 +1,43 @@
 import { useState,useEffect } from "react";
-import { getAllTasks } from "../../services/taskService";
+import { getAllTasks, toggleStatus,deleteTask } from "../../services/taskService";
 export default function RenderTask({
-render,
+  render,
   setAddTask,
   seteditTaskDiv,
   addTask,
+  setRender,
 }) {
-    const [Task, setTask] = useState([]);
-    const [isLoading,setIsLoading] = useState(true)
-  
+  const [Task, setTask] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     fetchTasks();
   }, [render]);
-  
-    const fetchTasks = async () => {
-      console.log("fetch task trigger");
-      const alltasks = await getAllTasks();
-      console.log(alltasks.tasks);
-  
-      if(alltasks.tasks){
-        setTask(alltasks.tasks);
-        setIsLoading(false);
-        return
-      }
-      setTask([])
-      setIsLoading(false);
-    };
-  function checkTask(id) {
-    axios
-      .post("http://localhost:3000/api/checkTask", {
-        id: id,
-      })
-      .then((res) => {
-        console.log(res.data);
-        fetchTasks();
-      });
-  }
 
+  const fetchTasks = async () => {
+    console.log("fetch task trigger");
+    const alltasks = await getAllTasks();
+    console.log(alltasks.tasks);
+
+    if (alltasks.tasks) {
+      setTask(alltasks.tasks);
+      setIsLoading(false);
+      return;
+    }
+    setTask([]);
+    setIsLoading(false);
+  };
+
+  async function deletetask(id) {
+    if (!id) return false;
+    const res = await deleteTask(id);
+    if (!res) {
+      alert("failed to delete task");
+      return;
+    }
+    alert("task deleted!!");
+    setRender(prev => !prev)
+  }
   function handleEditTask(Id) {
     console.log("task selected", Id);
 
@@ -46,32 +47,14 @@ render,
     }
   }
 
-  if(isLoading) return <div className="loading-div">Loading...</div>
+  if (isLoading) return <div className="loading-div">Loading...</div>;
   return (
     <>
+    <h4 className="render-taskCount"> Count : {Task.length}</h4>
       {Task.map((task, i) => (
-        <div
-          key={task.id}
-          className="render-main"
-          onClick={() => handleEditTask(task.id)}
-        >
+        <div key={task.id} className="render-main">
           <div className="render-taskDetails">
-            {task.complete === false ? (
-              <img
-                src="/assets/check-box-empty.png"
-                width={15}
-                height={15}
-                alt="checkboxpng"
-              />
-            ) : (
-              <img
-                src="/assets/check-box-with-check-sign.png"
-                width={15}
-                height={15}
-                alt="checkboxpng"
-              />
-            )}
-
+            <BoxImage i={i} setTask={setTask} task={task} />
             <p>{task.title}</p>
           </div>
 
@@ -82,8 +65,50 @@ render,
             <img src="/assets/calendar.png" width={15} alt="calenderpng" />
             <p>{task.date}</p>
           </div>
+          <div className="render-Btn">
+            <button onClick={() => deletetask(task.id)} className="render-btn">
+              delete
+            </button>
+            <button
+              onClick={() => handleEditTask(task.id)}
+              className="render-btn"
+            >
+              edit
+            </button>
+          </div>
         </div>
       ))}
     </>
+  );
+}
+
+function BoxImage({ task, setTask, i }) {
+  async function checkTask(id, i) {
+    if (!id) return;
+    const res = await toggleStatus(id);
+    if (res) {
+      setTask((prev) => {
+        const newTasks = [...prev];
+        newTasks[i] = { ...newTasks[i], complete: !newTasks[i].complete };
+        return newTasks;
+      });
+      alert("task checked");
+      return;
+    }
+    alert("failed to check");
+  }
+  return (
+    <img
+      style={{ cursor: "pointer" }}
+      onClick={() => checkTask(task.id, i)}
+      src={
+        task.complete
+          ? "/assets/check-box-with-check-sign.png"
+          : "/assets/check-box-empty.png"
+      }
+      width={15}
+      height={15}
+      alt="checkboxpng"
+    />
   );
 }

@@ -1,18 +1,14 @@
 import { useEffect, useState } from "react"
-import axios from 'axios'
-import AddSubTask from "../AddSubTask";
 import { getTask,updateTask } from "../../services/taskService";
 import { useDate } from "../../hooks/useDate";
 
 
-function EditTask({
-  setRender,
-  editTaskDiv,
-  
-}) {
-  const today = useDate()
+function EditTask({ setRender, editTaskDiv, seteditTaskDiv }) {
+  console.log(seteditTaskDiv);
+  const today = useDate();
   const [Task, setTask] = useState({
     id: null,
+    userId: null,
     complete: false,
     title: "",
     taskDescription: "",
@@ -21,11 +17,12 @@ function EditTask({
     tags: [],
   });
   const [edit, setEdit] = useState({ title: false, des: false });
-  const [isLoading,setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     setTask({
       id: null,
+      userId: null,
       complete: false,
       title: "",
       taskDescription: "",
@@ -35,9 +32,10 @@ function EditTask({
     });
     async function fetchtask(editTaskDiv) {
       const res = await getTask(editTaskDiv);
-      if(res){
+      if (res) {
         setTask({
           id: res.task.id,
+          userId: res.task.UserId,
           complete: res.task.complete,
           title: res.task.title,
           taskDescription: res.task.taskDescription,
@@ -45,67 +43,52 @@ function EditTask({
           list: res.task.list,
           tags: res.task.tags,
         });
-        setIsLoading(false)
-        return
+        setIsLoading(false);
+        return;
       }
-        setTask({
-          id: null,
-          complete: false,
-          title: "",
-          taskDescription: "",
-          date: today,
-          list: [],
-          tags: [],
-        });
     }
     fetchtask(editTaskDiv);
   }, [editTaskDiv]);
 
-  console.log(Task)
-
-   function inputHandler(e, field) {
-     setTask((prev) => ({ ...prev, [field]: e.target.value }));
-   }
-   function checkInputs(data) {
-     const isempty = Object.values(data).some((detail) => detail === "");
-     console.log(isempty);
-     return isempty;
-   }
-
-  async function update(){
-     const data = { title: Task.title, date: Task.date };
-     const isInputEmpty = checkInputs(data);
-     if (isInputEmpty) {
-       console.log(taskDetails);
-       alert("Check title and Date");
-       return;
-     }
-     const res = await updateTask({
-       ...data,
-       id: Task.id,
-       complete: Task.complete,
-       taskDescription: Task.taskDescription,
-       tags: Task.list,
-       list: Task.tags,
-     });
-     if(res){
-      alert("task updated successfully")
-      setRender(prev => !prev)
-      return
-     }
-     console.log(res)
-     alert("failed to update task")
+  function inputHandler(e, field) {
+    setTask((prev) => ({ ...prev, [field]: e.target.value }));
   }
-  function editInputHandler(e) {
-    seteditInputValue(e.target.value);
+  function checkInputs(data) {
+    const isempty = Object.values(data).some((detail) => detail === "");
+    return isempty;
   }
-  
-  function setEditHandler(field){
-    const toggleValue = edit[field]
+
+  async function update() {
+    const data = { title: Task.title, date: Task.date };
+    const isInputEmpty = checkInputs(data);
+    if (isInputEmpty) {
+      console.log(taskDetails);
+      alert("Check title and Date");
+      return;
+    }
+    const res = await updateTask({
+      ...data,
+      id: Task.id,
+      complete: Task.complete,
+      taskDescription: Task.taskDescription,
+      tags: Task.list,
+      list: Task.tags,
+    });
+    if (res) {
+      alert("task updated successfully");
+      setRender((prev) => !prev);
+      return;
+    }
+    console.log(res);
+    alert("failed to update task");
+  }
+
+  function setEditHandler(field) {
+    const toggleValue = edit[field];
     setEdit((prev) => ({ ...prev, [field]: !toggleValue }));
   }
 
-  if(isLoading) return <div className="loading-div">Loading...</div>
+  if (isLoading) return <div className="loading-div">Loading...</div>;
   return (
     <div className="edit-main">
       <div className="edit-title">
@@ -188,6 +171,14 @@ function EditTask({
       <div>
         <button onClick={update} className="styled-button ">
           save
+        </button>
+        <button
+          onClick={() => {
+            seteditTaskDiv(null);
+          }}
+          className="styled-button "
+        >
+          Cancel
         </button>
       </div>
     </div>

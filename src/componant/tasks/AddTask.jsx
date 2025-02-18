@@ -1,11 +1,11 @@
-import SelectTags from "../SelectTags";
-import { useDate } from "../../hooks/useDate";
+import SelectTags from "../tags/SelectTags";
 import { useState,useEffect } from "react";
 import { addTask } from "../../services/taskService";
-import List from "../List";
+import List from "../list/List";
+import { useFormatDate } from "../../hooks/useFormateDate";
+
 export default function AddTask({ setRender }) {
-  const today = useDate();
-  const [date, setDate] = useState();
+  const {formatDate} = useFormatDate();
   const [tagStack, setTagStack] = useState([]);
   const [listSelect, setListSelect] = useState([]);
   const [taskDetails, setTaskDetails] = useState({
@@ -15,14 +15,6 @@ export default function AddTask({ setRender }) {
     list: [],
     tags: [],
   });
-
-  useEffect(() => {
-    const today = new Date();
-    const taskformattedDate = `${today.getDate()}-${today.getMonth() + 1}-${
-      today.getFullYear() % 100
-    }`;
-    // setTaskformattedDate(taskformattedDate);
-  }, []);
 
   function inputHandler(e, field) {
     setTaskDetails((prev) => ({ ...prev, [field]: e.target.value }));
@@ -40,6 +32,8 @@ export default function AddTask({ setRender }) {
       alert("Check title and Date");
       return;
     }
+    console.log("tags :",tagStack)
+    console.log("lists : ",listSelect)
     const res = await addTask({
       ...data,
       taskDescription: taskDetails.taskDescription,
@@ -55,7 +49,6 @@ export default function AddTask({ setRender }) {
 
   return (
     <div className="addtask-main">
-      <h4>Add</h4>
       <div className="addtask-title">
         <label htmlFor="">Title</label>
         <input
@@ -76,14 +69,17 @@ export default function AddTask({ setRender }) {
         <label htmlFor="">Date</label>
         <input
           onChange={(e) => inputHandler(e, "date")}
-          value={taskDetails.date}
+          value={taskDetails.date || formatDate}
           className="addtask-dateInput"
           type="date"
         ></input>
       </div>
       <List listSelect={listSelect} setListSelect={setListSelect} />
       <SelectTags tagStack={tagStack} setTagStack={setTagStack} />
-      <button onClick={addtask}> addtask</button>
+      <button className="styled-button addtask-addBtn " onClick={addtask}>
+        {" "}
+        Add
+      </button>
     </div>
   );
 }
