@@ -1,0 +1,42 @@
+.tag-taskDiv{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    width: 50%;
+    gap: 0.3rem;
+    /* background: #dcdcdc; */
+    border: 1px solid transparent;
+    border-bottom-color: grey;
+}
+.tag-taskTitleDiv{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1em;
+}
+.tag-taskTitle{
+    /* font-size: 1.5rem; */
+    font-weight: 600;
+    text-transform: capitalize;
+}
+.tag-taskDes{
+    font-size: small;
+    font-weight: 600;
+}
+.tag-taskDateDiv{
+    display: flex;
+    flex-direction: row;
+    font-size: small;
+}
+.tag-Btn{
+ display: flex;
+ align-items: center;   
+ gap: 0.5rem;
+}
+.tag-btn{
+    font-size: 0.7rem;
+    font-weight: 500;
+    border-radius: 0.3rem;
+    border-color: aliceblue;
+    cursor: pointer
+}
