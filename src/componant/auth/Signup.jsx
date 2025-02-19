@@ -15,6 +15,11 @@ export default function Signup({ setLogged, setUserName }) {
   }
 
   async function handleSignUpClick() {
+    const isInputEmpty = checkInput(user);
+    if (isInputEmpty) {
+      alert("Check inputs");
+      return;
+    }
       setIsProcessing(true);
     try {
       const response = await signUp(user);
@@ -29,6 +34,10 @@ export default function Signup({ setLogged, setUserName }) {
       console.error("Error during login:", error);
     }
   }
+    function checkInput(data) {
+      const isEmpty = Object.values(data).some((detail) => detail === "");
+      return isEmpty;
+    }
   return (
     <div class="login-main">
       <div className="login-logo">
