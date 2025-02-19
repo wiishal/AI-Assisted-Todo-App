@@ -31,7 +31,12 @@ function Today() {
         </div>
         <div className="input-div">
           <div id="inpuDiv" className="today-addTask">
-            <img src="/assets/plus.png" alt="" width={15} height={15} />
+            <img
+              src="https://res.cloudinary.com/ddg85vpnk/image/upload/v1739965627/plus_ofocwp.png"
+              alt=""
+              width={15}
+              height={15}
+            />
             <button className="styled-button" onClick={handleClick}>
               Add task
             </button>
@@ -53,9 +58,9 @@ function Today() {
 
       {editTaskDiv !== null ? (
         <EditTask
-        editTaskDiv={editTaskDiv}
-        setRender={setRender}
-        seteditTaskDiv={seteditTaskDiv}
+          editTaskDiv={editTaskDiv}
+          setRender={setRender}
+          seteditTaskDiv={seteditTaskDiv}
         />
       ) : null}
     </div>
