@@ -1,6 +1,6 @@
 import { useState,useEffect } from "react";
 import "../style/Nav.css";
-import "../style/SelectTags.css";
+import "../style/selectTags.css";
 import Tags from "./tags/Tags";
 import { Link } from "react-router-dom";
 import { getUserTaskStr } from "../services/userStrService";
