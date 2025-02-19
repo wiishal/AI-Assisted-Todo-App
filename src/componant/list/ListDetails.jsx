@@ -71,7 +71,11 @@ function Task({ task, deletetask }) {
       </div>
       <p className="tag-taskDes">{task.taskDescription}</p>
       <div className="tag-taskDateDiv">
-        <img src="/assets/calendar.png" alt="calenderpng" width={15} />
+        <img
+          src="https://res.cloudinary.com/ddg85vpnk/image/upload/v1739965624/calendar_s9wgbg.png"
+          alt="calenderpng"
+          width={15}
+        />
         <p className="tag-taskDate">{task.date}</p>
       </div>
       <div className="tag-Btn">
