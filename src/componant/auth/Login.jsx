@@ -15,9 +15,15 @@ export default function Login({ setLogged, setUserName }) {
   }
 
   async function handleLoginClick() {
+     const isInputEmpty = checkInput(user);
+     if (isInputEmpty) {
+       alert("Check inputs");
+       return;
+     }
     setIsProcessing(true)
     try {
       const response = await login(user);
+      setIsProcessing(false)
       if (response) {
         const token = response.data.token;
         localStorage.setItem("token", token);
@@ -27,8 +33,14 @@ export default function Login({ setLogged, setUserName }) {
       }
     } catch (error) {
       console.error("Error during login:", error);
+      setIsProcessing(false)
     }
   }
+  function checkInput(data){
+    const isEmpty = Object.values(data).some((detail) => detail === "");
+    return isEmpty
+  }
+
   return (
     <div class="login-main">
       <div className="login-logo">
