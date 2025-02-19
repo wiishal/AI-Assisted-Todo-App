@@ -49,7 +49,12 @@ const [userStr, setUserStr] = useState({
       <div className="menu">
         <h4>{currUser}</h4>
         <span>
-          <img src="assets/menu.png" alt="" width={20} height={20} />
+          <img
+            src="https://res.cloudinary.com/ddg85vpnk/image/upload/v1739965627/menu_huhrht.png"
+            alt=""
+            width={20}
+            height={20}
+          />
         </span>
       </div>
       {/* <div className="search-bar">
@@ -62,7 +67,7 @@ const [userStr, setUserStr] = useState({
             <div className="section-div">
               <div className="icon-div">
                 <img
-                  src="/assets/checklist.png"
+                  src="https://res.cloudinary.com/ddg85vpnk/image/upload/v1739965625/checklist_nm8ohn.png"
                   alt=""
                   width={20}
                   height={20}
@@ -75,7 +80,7 @@ const [userStr, setUserStr] = useState({
             <div className="section-div">
               <div className="icon-div">
                 <img
-                  src="/assets/fast-forward-double-right-arrows-symbol.png"
+                  src="https://res.cloudinary.com/ddg85vpnk/image/upload/v1739965625/fast-forward-double-right-arrows-symbol_sw9wzj.png"
                   alt=""
                   width={15}
                   height={15}
@@ -87,14 +92,24 @@ const [userStr, setUserStr] = useState({
           <li>
             <div className="section-div">
               <div className="icon-div">
-                <img src="/assets/calendar.png" alt="" width={15} height={15} />
+                <img
+                  src="https://res.cloudinary.com/ddg85vpnk/image/upload/v1739965624/calendar_s9wgbg.png"
+                  alt=""
+                  width={15}
+                  height={15}
+                />
                 <Link to="/Calender">Calender</Link>
               </div>
             </div>
           </li>
           <li>
             <div className="icon-div">
-              <img src="/assets/dollar.png" alt="" width={15} height={15} />
+              <img
+                src="https://res.cloudinary.com/ddg85vpnk/image/upload/v1739965624/dollar_fn9t4e.png"
+                alt=""
+                width={15}
+                height={15}
+              />
               <Link to="/Expenses">Expenses</Link>
             </div>
           </li>
