@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import "../style/calender.css";
 import axios from "axios";
+import { useDate } from "../hooks/useDate";
 
 function Calender() {
-  const [date, setDate] = useState();
+  const date = useDate();
   const [formattedDate, setTaskformattedDate] = useState();
   const [filterTasks, setFilterTask] = useState([]);
   const [Tasks, setTasks] = useState([]);

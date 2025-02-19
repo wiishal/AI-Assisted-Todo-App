@@ -2,52 +2,43 @@ import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import axios from "axios";
 import App from "./App.jsx";
-
-import LoginNew from "./auth/LoginNew.jsx";
+import { use } from "react";
+import Landing from "./auth/Landing.jsx";
+import { validateViaToken } from "./services/authService.js";
+import { BrowserRouter } from "react-router-dom";
 
 const Main = () => {
-
-   const [isLogin, setIsLogin] = useState(false);
-   const [currusername, setcurrUsername] = useState();
-
-
+  const [user,setUserName] = useState("")
+  const [logged,setLogged] = useState(false)
   useEffect(()=>{
-    console.log("checking")
-    
-      const token = localStorage.getItem("authToken");
-      if (token) {
-        axios
-          .post("http://localhost:3001/auth/verifyToken", {
-            token: token,
-          })
-          .then(function (response) {
-            console.log(response.data.msg," from main");
-            handleLogin(true, response.data.user);
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
+    async function validateUser(){
+      if(!logged){
+        const token = localStorage.getItem("token")
+        if(!token){
+          setLogged(false)
+          return
+        }
+        const responce = await validateViaToken(token)
+        setUserName(responce.data.user)
+        if(responce){
+          setLogged(true)
+        }
       }
-    
-  },[])
+    }
+    validateUser();
+  })
 
-  const handleLogin = (status, user) => {
-    setIsLogin(status);
-    console.log(user);
-    setcurrUsername(user);
-  };
-
+    if(logged == null) return <div>loading!!!</div>
   return (
-    <React.StrictMode>
-      {isLogin ? (
-        <App user={currusername} />
+    <>
+      {logged ? (
+        <App user={user} />
       ) : (
-        <LoginNew variable={isLogin} handle={handleLogin} />
+        <Landing setUserName={setUserName} setLogged={setLogged} />
       )}
-    </React.StrictMode>
+    </>
   );
-
- 
+  
 };
 
 ReactDOM.createRoot(document.getElementById("root")).render(<Main />);

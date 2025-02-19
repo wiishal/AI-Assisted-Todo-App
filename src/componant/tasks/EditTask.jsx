@@ -4,7 +4,6 @@ import { useDate } from "../../hooks/useDate";
 
 
 function EditTask({ setRender, editTaskDiv, seteditTaskDiv }) {
-  console.log(seteditTaskDiv);
   const today = useDate();
   const [Task, setTask] = useState({
     id: null,
@@ -62,7 +61,6 @@ function EditTask({ setRender, editTaskDiv, seteditTaskDiv }) {
     const data = { title: Task.title, date: Task.date };
     const isInputEmpty = checkInputs(data);
     if (isInputEmpty) {
-      console.log(taskDetails);
       alert("Check title and Date");
       return;
     }
@@ -79,7 +77,6 @@ function EditTask({ setRender, editTaskDiv, seteditTaskDiv }) {
       setRender((prev) => !prev);
       return;
     }
-    console.log(res);
     alert("failed to update task");
   }
 

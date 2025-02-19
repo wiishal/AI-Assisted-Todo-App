@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-
 import { Link } from "react-router-dom";
 import { addtag } from "../../services/userStrService";
 
@@ -12,12 +11,10 @@ function Tags({ Tags }) {
     setTags(Tags || []);
   }, [Tags]);
   
-  console.log(tags)
 
 
 function addTag() {
     const trimmedValue = tagInputValue.trim();
-    console.log(trimmedValue);
     if (trimmedValue !== "") {
       setTags((prevTags) => [...prevTags, trimmedValue]);
       setTagInputValue("");

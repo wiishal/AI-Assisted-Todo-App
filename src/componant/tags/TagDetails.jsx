@@ -17,7 +17,6 @@ function TagDetails() {
  async function fetch() {
    if(!tag) return 
    const data = await getTagTask(tag)
-   console.log(data)
    if(!data){
     alert("failed to fetch tasks")
     setTask()

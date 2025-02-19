@@ -34,7 +34,6 @@ function handleTagClick(tag) {
      
    }
 }
-  console.log(tagStack)
   if (isLoading) return <div className="loading-div">Loadiing...</div>
     return (
       <div className="tag-itemDiv">

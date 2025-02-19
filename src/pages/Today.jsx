@@ -1,45 +1,33 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import "../style/Today.css";
 import "../style/RenderTaskComp.css"
 import "../style/EditTaskComp.css"
 import "../style/AddTaskComp.css";
+import "../style/selectTags.css";
 import EditTask from "../componant/tasks/EditTask";
-import { getAllTasks } from "../services/taskService";
 import RenderTask from "../componant/tasks/RenderTask";
-import AddTask from "../componant/AddTask";
+import AddTask from "../componant/tasks/AddTask";
 
-function Today({ currUser, navCount }) {
-  console.log("today re-renders")
+function Today() {
   const [Task, setTask] = useState([]);
   const [render,setRender] = useState(false)
   const [addTask, setAddTask] = useState(false);
   const [editTaskDiv, seteditTaskDiv] = useState(null);
-  const [editInputValue, seteditInputValue] = useState("");
 
   function handleClick() {
-    console.log("from btn click");
     if (editTaskDiv !== null) {
       seteditTaskDiv(null);
     }
     setAddTask((prev) => !prev);
   }
 
-  function handleDelete(id) {
-    // if(id === "") return
-    console.log("handledleete trigger");
-    axios.delete(`http://localhost:3000/api/deleteTask/${id}`).then((res) => {
-      console.log(res.data, " deleted arry");
-      fetchTasks();
-    });
-  }
 
   return (
     <div className="today-main">
       <div className="today-left">
         <div className="today-title">
           <h1>Today</h1>
-          <h1>{Task.length}</h1>{" "}
         </div>
         <div className="input-div">
           <div id="inpuDiv" className="today-addTask">
@@ -51,12 +39,12 @@ function Today({ currUser, navCount }) {
         </div>
 
         <div style={{ overflowY: "scroll", width: "70%" }}>
-          {/* {Task} */}
           <RenderTask
             render={render}
             addTask={addTask}
             setAddTask={setAddTask}
             seteditTaskDiv={seteditTaskDiv}
+            setRender={setRender}
           />
         </div>
       </div>
@@ -64,7 +52,11 @@ function Today({ currUser, navCount }) {
       {addTask === true ? <AddTask setRender={setRender} /> : null}
 
       {editTaskDiv !== null ? (
-        <EditTask editTaskDiv={editTaskDiv} setRender={setRender} />
+        <EditTask
+        editTaskDiv={editTaskDiv}
+        setRender={setRender}
+        seteditTaskDiv={seteditTaskDiv}
+        />
       ) : null}
     </div>
   );

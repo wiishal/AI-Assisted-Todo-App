@@ -18,7 +18,6 @@ function ListDetails() {
  async function fetch() {
    if (!item) return; 
    const data = await getListTask(item);
-   console.log(data)
    if(!data){
     alert("failed to fetch tasks")
     setIsLoading(false);

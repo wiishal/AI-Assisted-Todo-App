@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 import { login } from "../../services/authService";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -30,20 +29,30 @@ export default function Login({ setLogged, setUserName }) {
   }
   return (
     <div class="login-main">
-      <div className="login-div">
-        <div className="userInput-div">
-          <label className="username-lable" htmlFor="username">
-            User Name
-          </label>
-          <input
-            onChange={(e) => {
-              setUserDetails(e, "username");
-            }}
-            className="username-input"
-            type="text"
-          />
+      <div className="login-logo">
+        <p onClick={()=> navigate('/')} className="login-name">TODO</p>
+      </div>
+      <div className="login-bmain">
+        <div className="login-tagline">
+          <p className="login-tagLineText">
+            Empower your <p> productivity</p>
+          </p>
         </div>
-        <div>
+
+        <div className="login-div">
+          <div className="userInput-div">
+            <label className="username-lable" htmlFor="username">
+              User Name
+            </label>
+            <input
+              onChange={(e) => {
+                setUserDetails(e, "username");
+              }}
+              className="username-input"
+              type="text"
+            />
+          </div>
+
           <div className="passwordInput-div">
             <label className="password-lable" htmlFor="password">
               Password
@@ -56,12 +65,13 @@ export default function Login({ setLogged, setUserName }) {
               type="text"
             />
           </div>
-        </div>
-        <div className="loginBtn-div">
-          <button className="loginBtn" onClick={handleLoginClick}>
-            log in
-          </button>
-          <Link to="/signup">Create an Account</Link>
+
+          <div className="loginBtn-div">
+            <button className="loginBtn" onClick={handleLoginClick}>
+              log in
+            </button>
+            <Link to="/signup">Create an Account</Link>
+          </div>
         </div>
       </div>
     </div>

@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 import { signUp } from "../../services/authService";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -30,38 +29,51 @@ export default function Signup({ setLogged, setUserName }) {
   }
   return (
     <div class="login-main">
-      <div className="login-div">
-        <div className="userInput-div">
-          <label className="username-lable" htmlFor="username">
-            User Name
-          </label>
-          <input
-            onChange={(e) => {
-              setUserDetails(e, "username");
-            }}
-            className="username-input"
-            type="text"
-          />
+      <div className="login-logo">
+        <p onClick={() => navigate("/")} className="login-name">
+          TODO
+        </p>
+      </div>
+      <div className="login-bmain">
+        <div className="login-tagline">
+          <p className="login-tagLineText">
+            {/* Start Organizing Now!" */}
+            Start <p> Organizing</p> Now!
+          </p>
         </div>
-        <div>
-          <div className="passwordInput-div">
-            <label className="password-lable" htmlFor="password">
-              Password
+        <div className="login-div">
+          <div className="userInput-div">
+            <label className="username-lable" htmlFor="username">
+              User Name
             </label>
             <input
               onChange={(e) => {
-                setUserDetails(e, "password");
+                setUserDetails(e, "username");
               }}
-              className="password-input"
+              className="username-input"
               type="text"
             />
           </div>
-        </div>
-        <div className="loginBtn-div">
-          <button className="loginBtn" onClick={handleSignUpClick}>
-            Sign up
-          </button>
-          <Link to="/">Back To Login</Link>
+          <div>
+            <div className="passwordInput-div">
+              <label className="password-lable" htmlFor="password">
+                Password
+              </label>
+              <input
+                onChange={(e) => {
+                  setUserDetails(e, "password");
+                }}
+                className="password-input"
+                type="text"
+              />
+            </div>
+          </div>
+          <div className="loginBtn-div">
+            <button className="loginBtn" onClick={handleSignUpClick}>
+              Sign up
+            </button>
+            <Link to="/login">Already have an Accout</Link>
+          </div>
         </div>
       </div>
     </div>

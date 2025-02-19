@@ -15,9 +15,7 @@ export default function RenderTask({
   }, [render]);
 
   const fetchTasks = async () => {
-    console.log("fetch task trigger");
     const alltasks = await getAllTasks();
-    console.log(alltasks.tasks);
 
     if (alltasks.tasks) {
       setTask(alltasks.tasks);
@@ -39,7 +37,6 @@ export default function RenderTask({
     setRender(prev => !prev)
   }
   function handleEditTask(Id) {
-    console.log("task selected", Id);
 
     seteditTaskDiv(Id);
     if (addTask) {

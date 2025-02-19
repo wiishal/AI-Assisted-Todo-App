@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai";
 const apiUrl = import.meta.env.VITE_API_KEY;
 

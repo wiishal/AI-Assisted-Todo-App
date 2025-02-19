@@ -17,7 +17,6 @@ import React from "react";
       setListState((prev) => ({ ...prev, [item]: !prev[item] }));
     }
   }
-  console.log(listSelect)
 
   return (
     <div className="addtask-list">

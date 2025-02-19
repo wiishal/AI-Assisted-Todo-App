@@ -24,7 +24,6 @@ function Upcoming({ navCount }) {
 
   const fetchTask = async () => {
       const response = await getAllTasks();
-      console.log(response.tasks);
       if(response.tasks){
         grouped(response.tasks);
       }
@@ -36,7 +35,6 @@ function Upcoming({ navCount }) {
       tomorrow: [],
       other: [],
     };
-    console.log("tommow",formatDateTomorrow);
     data.forEach(task => {
       if (task.date == formatDate) {
         groupedObj.today.push(task);
@@ -46,10 +44,8 @@ function Upcoming({ navCount }) {
         groupedObj.other.push(task);
       }
     });
-    console.log(groupedObj)
     setGroupedTasks(groupedObj);
   }
-  console.log(formatDate);
 
   return (
     <div className="Upcoming-main">

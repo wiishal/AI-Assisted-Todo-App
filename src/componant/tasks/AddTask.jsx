@@ -21,19 +21,15 @@ export default function AddTask({ setRender }) {
   }
   function checkInputs(data) {
     const isempty = Object.values(data).some((detail) => detail === "");
-    console.log(isempty)
     return isempty;
   }
   async function addtask() {
     const data = { title: taskDetails.title, date: taskDetails.date };
     const isInputEmpty = checkInputs(data);
     if (isInputEmpty) {
-      console.log(taskDetails)
       alert("Check title and Date");
       return;
     }
-    console.log("tags :",tagStack)
-    console.log("lists : ",listSelect)
     const res = await addTask({
       ...data,
       taskDescription: taskDetails.taskDescription,
