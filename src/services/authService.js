@@ -2,7 +2,7 @@ const url = import.meta.env.VITE_API_URL;
 import axios from "axios";
 
 export async function login(userDetails) {
-  console.log(url);
+
   try {
     const response = await axios.post(`${url}/api/v1/auth/login`, userDetails);
     if (response) {
