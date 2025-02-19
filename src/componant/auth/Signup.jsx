@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 export default function Signup({ setLogged, setUserName }) {
   const [user, setUser] = useState({ username: "", password: "" });
+   const [isProcessing, setIsProcessing] = useState(false);
   const navigate = useNavigate();
 
   function setUserDetails(e, field) {
@@ -14,6 +15,7 @@ export default function Signup({ setLogged, setUserName }) {
   }
 
   async function handleSignUpClick() {
+      setIsProcessing(true);
     try {
       const response = await signUp(user);
       if (response) {
@@ -70,7 +72,7 @@ export default function Signup({ setLogged, setUserName }) {
           </div>
           <div className="loginBtn-div">
             <button className="loginBtn" onClick={handleSignUpClick}>
-              Sign up
+              {isProcessing ? "processing..." : "Sign in"}
             </button>
             <Link to="/login">Already have an Accout</Link>
           </div>

@@ -13,7 +13,12 @@ export default function LandingPage({ setLogged, setUserName }) {
             <p className="landing-name">TODO</p>
           </div>
           <div className="landing-login">
-            <button onClick={()=>navigate("/login")} className="landing-loginBtn">Log in</button>
+            <button
+              onClick={() => navigate("/login")}
+              className="landing-loginBtn"
+            >
+              Log in
+            </button>
           </div>
         </div>
         {/* main */}
@@ -31,7 +36,11 @@ export default function LandingPage({ setLogged, setUserName }) {
         </div>
         <div className="landing-footer">
           <a href="https://github.com/wiishal">
-            <img src="/assets/github.png" width={20} alt="" />
+            <img
+              src="https://res.cloudinary.com/ddg85vpnk/image/upload/v1739965625/github_hqeyh9.png"
+              width={20}
+              alt=""
+            />
           </a>
         </div>
       </div>

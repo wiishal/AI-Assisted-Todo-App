@@ -47,7 +47,7 @@ export default function RenderTask({
   if (isLoading) return <div className="loading-div">Loading...</div>;
   return (
     <>
-    <h4 className="render-taskCount"> Count : {Task.length}</h4>
+      <h4 className="render-taskCount"> Count : {Task.length}</h4>
       {Task.map((task, i) => (
         <div key={task.id} className="render-main">
           <div className="render-taskDetails">
@@ -59,7 +59,11 @@ export default function RenderTask({
             <p>{task.taskDescription}</p>
           </div>
           <div className="render-taskstatus">
-            <img src="/assets/calendar.png" width={15} alt="calenderpng" />
+            <img
+              src="https://res.cloudinary.com/ddg85vpnk/image/upload/v1739965624/calendar_s9wgbg.png"
+              width={15}
+              alt="calenderpng"
+            />
             <p>{task.date}</p>
           </div>
           <div className="render-Btn">
@@ -100,8 +104,8 @@ function BoxImage({ task, setTask, i }) {
       onClick={() => checkTask(task.id, i)}
       src={
         task.complete
-          ? "/assets/check-box-with-check-sign.png"
-          : "/assets/check-box-empty.png"
+          ? "https://res.cloudinary.com/ddg85vpnk/image/upload/v1739965624/check-box-with-check-sign_iqn92n.png"
+          : "https://res.cloudinary.com/ddg85vpnk/image/upload/v1739965626/check-box-empty_a4aomp.png"
       }
       width={15}
       height={15}

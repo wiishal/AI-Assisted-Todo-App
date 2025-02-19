@@ -55,7 +55,7 @@ function AddSubTask({  Task, editTaskDiv,fetchTasks }) {
   return (
     <div className="addsubTask">
       <h3>Sub Task</h3>
-      <input 
+      <input
         type="text"
         value={subtaskInput}
         onChange={subTaskInputHandler}
@@ -81,7 +81,7 @@ function AddSubTask({  Task, editTaskDiv,fetchTasks }) {
           {task.status === false ? (
             <img
               onClick={() => checkSubTask(Task[editTaskDiv].taskId, i)}
-              src="/assets/check-box-empty.png"
+              src="https://res.cloudinary.com/ddg85vpnk/image/upload/v1739965626/check-box-empty_a4aomp.png"
               alt=""
               width={14}
               height={14}
@@ -89,7 +89,7 @@ function AddSubTask({  Task, editTaskDiv,fetchTasks }) {
           ) : (
             <img
               onClick={() => checkSubTask(Task[editTaskDiv].taskId, i)}
-              src="/assets/check-box-with-check-sign.png"
+              src="https://res.cloudinary.com/ddg85vpnk/image/upload/v1739965624/check-box-with-check-sign_iqn92n.png"
               alt=""
               width={14}
               height={14}
@@ -110,9 +110,9 @@ function AddSubTask({  Task, editTaskDiv,fetchTasks }) {
           </p>
           <img
             onClick={() => {
-              deleteSubTask(Task[editTaskDiv].taskId , i);
+              deleteSubTask(Task[editTaskDiv].taskId, i);
             }}
-            src="/assets/delete.png"
+            src="https://res.cloudinary.com/ddg85vpnk/image/upload/v1739965624/delete_xp9grm.png"
             alt=""
             width={10}
             height={10}

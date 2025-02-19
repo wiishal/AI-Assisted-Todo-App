@@ -27,8 +27,8 @@ import React from "react";
             onClick={() => addtoList("personal")}
             src={
               listState.personal
-                ? "/assets/check-box-with-check-sign.png"
-                : "/assets/check-box-empty.png"
+                ? "https://res.cloudinary.com/ddg85vpnk/image/upload/v1739965626/check-box-empty_a4aomp.png"
+                : "https://res.cloudinary.com/ddg85vpnk/image/upload/v1739965624/check-box-with-check-sign_iqn92n.png"
             }
             alt=""
             width={15}

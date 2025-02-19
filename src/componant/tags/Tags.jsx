@@ -43,7 +43,7 @@ async function saveTag(tagInputValue) {
         <img
           style={{ cursor: "pointer" }}
           onClick={() => setIsTagInputDiv((prev) => !prev)}
-          src="/assets/plus.png"
+          src="https://res.cloudinary.com/ddg85vpnk/image/upload/v1739965627/plus_ofocwp.png"
           alt=""
           width={15}
           height={15}
@@ -68,7 +68,7 @@ async function saveTag(tagInputValue) {
               <img
                 style={{ cursor: "pointer" }}
                 onClick={addTag}
-                src="/assets/plus.png"
+                src="https://res.cloudinary.com/ddg85vpnk/image/upload/v1739965627/plus_ofocwp.png"
                 alt=""
                 width={15}
                 height={15}

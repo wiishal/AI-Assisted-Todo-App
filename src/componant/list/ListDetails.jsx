@@ -59,7 +59,9 @@ function Task({ task, deletetask }) {
       <div className="tag-taskTitleDiv">
         <img
           src={
-            task.complete ? "/assets/check-mark.png" : "/assets/dry-clean.png"
+            task.complete
+              ? "https://res.cloudinary.com/ddg85vpnk/image/upload/v1739965625/check-mark_c6inez.png"
+              : "https://res.cloudinary.com/ddg85vpnk/image/upload/v1739965625/dry-clean_plr1bl.png"
           }
           alt=""
           width={13}

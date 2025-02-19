@@ -48,7 +48,9 @@ function Task({ task }) {
       <div className="tag-taskTitleDiv">
         <img
           src={
-            !task.complete ? "/assets/check-mark.png" : "/assets/dry-clean.png"
+            !task.complete
+              ? "https://res.cloudinary.com/ddg85vpnk/image/upload/v1739965625/check-mark_c6inez.png"
+              : "https://res.cloudinary.com/ddg85vpnk/image/upload/v1739965625/dry-clean_plr1bl.png"
           }
           alt=""
           width={13}
@@ -58,7 +60,11 @@ function Task({ task }) {
       </div>
       <p className="tag-taskDes">{task.taskDescription}</p>
       <div className="tag-taskDateDiv">
-        <img src="/assets/calendar.png" alt="calenderpng" width={15} />
+        <img
+          src="https://res.cloudinary.com/ddg85vpnk/image/upload/v1739965624/calendar_s9wgbg.png"
+          alt="calenderpng"
+          width={15}
+        />
         <p className="tag-taskDate">{task.date}</p>
       </div>
       {/* <img src="/assets/delete.png" width={15} /> */}
