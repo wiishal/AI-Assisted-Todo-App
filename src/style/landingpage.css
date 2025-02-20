@@ -64,6 +64,13 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     cursor: pointer;
 }
+.landing-footer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: rgb(44, 50, 56);
+    text-transform: capitalize;
+}
 @media only screen and (max-width: 1200px) {
     .landing-headlineMain{
         text-align: center;

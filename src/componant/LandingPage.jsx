@@ -42,6 +42,7 @@ export default function LandingPage({ setLogged, setUserName }) {
               alt=""
             />
           </a>
+          <p>demo version</p>
         </div>
       </div>
     </div>
