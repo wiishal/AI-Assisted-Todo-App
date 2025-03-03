@@ -35,7 +35,7 @@ export default function LandingPage({ setLogged, setUserName }) {
           </div>
         </div>
         <div className="landing-footer">
-          <a href="https://github.com/wiishal">
+          <a href="https://github.com/wiishal/AI-Assisted-Todo-App">
             <img
               src="https://res.cloudinary.com/ddg85vpnk/image/upload/v1739965625/github_hqeyh9.png"
               width={20}
