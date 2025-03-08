@@ -26,7 +26,7 @@ const Main = () => {
       }
     }
     validateUser();
-  })
+  },[])
 
     if(logged == null) return <div>loading!!!</div>
   return (
