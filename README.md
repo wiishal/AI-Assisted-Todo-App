@@ -12,3 +12,8 @@ The AI-Assisted To-Do List App is a modern task management application designed 
 - **Expense Tracking:** Keep track of expenses associated with tasks.
 - **Multi-User Support:** Manage tasks for multiple users with separate profiles.
 - **Real-Time Updates:** Get real-time updates and notifications for tasks and deadlines.
+
+## Tech Stack
+- **Frontend:** React, Tailwind
+- **Backend:** Hono (cloudfare workerd)
+  - **https://github.com/wiishal/todo-backend-hono**

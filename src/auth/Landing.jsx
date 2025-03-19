@@ -1,10 +1,9 @@
-import { BrowserRouter, Route, Routes,  } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LandingPage from "../componant/LandingPage";
 import Login from "../componant/auth/Login";
 import Signup from "../componant/auth/Signup";
 
-function Landing({setUserName,setLogged}) {
-   
+function Landing({ setUserName, setLogged }) {
   return (
     <BrowserRouter>
       <Routes>
