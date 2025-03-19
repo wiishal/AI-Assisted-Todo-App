@@ -15,5 +15,5 @@ The AI-Assisted To-Do List App is a modern task management application designed 
 
 ## Tech Stack
 - **Frontend:** React, Tailwind
-- **Backend:** Hono (cloudfare workerd)
+- **Backend:** Hono (cloudfare workers)
   - **https://github.com/wiishal/todo-backend-hono**
